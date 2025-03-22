@@ -10,7 +10,9 @@ class View {
         $twig = new Environment($loader);
         $twig->addGlobal('asset', ASSET);
         $twig->addGlobal('base', BASE);
+        $twig->addGlobal('session', $_SESSION);
         echo $twig->render($template.'.php', $data);
+        
     }
     static public function redirect($url){
             header('location:'.BASE.'/'.$url);

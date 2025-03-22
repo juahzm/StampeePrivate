@@ -4,11 +4,13 @@ use App\Models\User;
 use App\Providers\View;
 use App\Providers\Validator;
 use App\Models\CRUD;
+use App\Providers\Auth;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 class UserController {
+
 
     public function index(){
 

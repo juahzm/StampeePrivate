@@ -48,6 +48,15 @@ class AuthController {
 
         
     }
+
+    public function delete(){
+
+            session_destroy();
+            return View::redirect('user/accueil/login');
+    
+
+
+    }
 }
 
 

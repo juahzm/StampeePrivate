@@ -22,6 +22,12 @@ html {
     line-height: 1.5625;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    max-width: 1920px;
+}
+
 /*La typo*/
 h1,
 h2,

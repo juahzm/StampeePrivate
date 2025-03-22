@@ -1,0 +1,15 @@
+.profil_conteneur {
+
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 80px;
+    flex-wrap: wrap;
+}
+
+.profil_conteneur_basis {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 450px;
+}

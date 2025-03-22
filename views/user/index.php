@@ -68,7 +68,7 @@
                 </div>
 
                 <div>
-                    <a class="bouton" href="">Connexion</a>
+                    <a class="bouton" href="{{base}}/user/accueil/login">Connexion</a>
                 </div>
                 <div>
                     <a class="bouton" href="{{base}}/user/accueil/create">Créer un compte</a>
