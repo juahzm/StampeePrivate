@@ -1,0 +1,22 @@
+@media (max-width: 800px) {
+    .article-conteneur {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    &>.cartes-defilement {
+        grid-area: plus;
+        margin-left: 100px;
+        margin-right: 100px;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 1291px) {
+    .article-conteneur {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+}

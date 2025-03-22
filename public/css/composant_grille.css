@@ -1,0 +1,23 @@
+.Grille {
+    display: grid;
+    gap: 20px;
+
+    @media (min-width: 825px) {
+        padding: 30px;
+
+        grid-auto-flow: column;
+        overflow: auto;
+    }
+
+    & .Carte {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        background-color: var(--couleurBlanc);
+        align-items: center;
+
+        & > :last-child {
+            margin-bottom: auto;
+        }
+    }
+}
