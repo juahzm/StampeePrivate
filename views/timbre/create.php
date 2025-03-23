@@ -38,20 +38,22 @@
             </label>
             <span class="errors" > {{errors.dimensiontimbre}}</span>
 
+            <label>Tirage
+                <input type="number" name="tiragetimbre" value="{{timbre.tiragetimbre}}" >
+            </label>
+            <span class="errors" > {{errors.tiragetimbre}}</span>
 
-            <label>Timbre certifié
+
+            <label class="select_area">Timbre certifié
             <select name="certifietimbre" value="{{timbre.certifietimbre}}" >
                 <option value="1">Oui</option>
                 <option value="0">Non</option>
             </select>
             </label>
 
-            <label>Tirage
-                <input type="number" name="tiragetimbre" value="{{timbre.tiragetimbre}}" >
-            </label>
-            <span class="errors" > {{errors.tiragetimbre}}</span>
 
-            <label>Country
+
+            <label class="select_area">Pays
                 <select name="countryidcountry">
                 {% for country in countries %}
                 <option value="{{country.idcountry}}">{{ country.namecountry}}</option>
@@ -60,7 +62,7 @@
 
             </label>
 
-            <label>Condition
+            <label class="select_area">Condition
                 <select name="conditionsidconditions">
                 {% for condition in conditions %}
                 <option value="{{conditions.idcondition}}">{{ condition.namecondition}}</option>
@@ -69,7 +71,7 @@
                 
             </label>
 
-            <label>Colour
+            <label class="select_area">Couleur
                 <select name="coloridcolor">
                 {% for color in colors %}
                 <option value="{{color.idcolor}}">{{ color.namecolor}}</option>
@@ -77,6 +79,7 @@
                 </select>
                 
             </label>
+
 
             <input type="submit" value="Soumettre"class="bouton">
 

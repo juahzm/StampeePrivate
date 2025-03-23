@@ -162,6 +162,7 @@ label {
 
 input {
     width: 300px;
+
 }
 
 .body-create {
@@ -175,4 +176,14 @@ input {
 .errors {
     color: red;
     font-size: 12px;
+}
+
+.select_area {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+select {
+    font-size: 17px;
 }
