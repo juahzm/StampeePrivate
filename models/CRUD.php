@@ -47,5 +47,17 @@ abstract class CRUD extends \PDO {
         }
 
     }
+
+    final public function select($field = null) {
+        if($field == null){
+            $field = $this->primaryKey;
+        }
+        $sql = "SELECT * FROM $this->table";
+        $stmt =$this->query($sql);
+        return $stmt->fetchAll();
+    }
+
+
+
 }
 

@@ -29,11 +29,11 @@ body {
 
     display: grid;
     grid-template-areas:
-        "nav     nav      nav"
-        "header  header   header"
-        "main  main   main"
-        "footer footer footer";
-    grid-template-columns: 40% 30% 30%;
+        "nav"
+        "header"
+        "main"
+        "footer";
+    grid-template-columns: 100%;
     grid-template-rows: auto auto auto auto;
 
     &>nav {
@@ -46,8 +46,7 @@ body {
 
     &>main {
         grid-area: main;
-        display: flex;
-        flex-direction: column;
+
     }
 
     &>footer {

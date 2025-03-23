@@ -129,7 +129,6 @@ small {
     flex-wrap: wrap;
     flex-direction: column;
     gap: 5px;
-    align-items: center;
 }
 
 .flex-row {
@@ -137,7 +136,6 @@ small {
     flex-wrap: wrap;
     flex-direction: row;
     gap: 5px;
-    align-items: center;
 }
 
 .logo {

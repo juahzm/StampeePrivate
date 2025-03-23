@@ -15,6 +15,9 @@ Route::get('/user/accueil/logout', 'AuthController@delete');
 
 Route::get('/user/profil', 'ProfilController@index');
 
+Route::get('/user/timbre/create', 'TimbreController@create');
+Route::post('/user/timbre/create', 'TimbreController@store');
+
 
 
 

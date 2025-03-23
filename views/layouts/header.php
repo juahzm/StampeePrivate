@@ -46,6 +46,8 @@
             type="text/css"
             href="{{asset}}css/composant_profil.css"
         />
+
+        <link rel="stylesheet" type="text/css" href="{{asset}}css/composant_usercreate.css">
       
     </head>
     <body>
@@ -113,15 +115,11 @@
             </div>
 
             <div class="navigation_principal rosarivo-regular-italic">
-                <input
-                    aria-label="bouton_menu"
-                    class="pour_ouvrir_fermer_bouton bouton_2D"
-                    type="checkbox"
-                />
+              
                 <ul class="flex-row">
                     <li><a href="">Le Catalogue</a></li>
                     <li><a href="">Archive</a></li>
-                    <li><a href="">Créer un enchère</a></li>
+                    <li><a href="{{base}}/user/timbre/create">Créer un enchère</a></li>
                 </ul>
 
                 <img
