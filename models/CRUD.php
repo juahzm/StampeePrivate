@@ -9,6 +9,10 @@ abstract class CRUD extends \PDO {
         parent::__construct('mysql:host=localhost; dbname=stampee; port=3306; charset=utf8', 'root', '');
     }
 
+    public function getLastInsertId() {
+        return $this->lastInsertId();
+    }
+
     final public function insert($data){
         if (!is_array($data) || empty($data)) {
             return false;
@@ -57,7 +61,41 @@ abstract class CRUD extends \PDO {
         return $stmt->fetchAll();
     }
 
+    final public function selectId($value){
+        $sql = "SELECT * FROM $this->table WHERE $this->primaryKey = :$this->primaryKey";
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(":$this->primaryKey", $value);
+        $stmt->execute();
+        $count = $stmt->rowCount();
+        if($count == 1){
+            return $stmt->fetchAll();
+        }else{
+            return false;
+        }
+    }
 
+
+    final public function selectWithJoin($joinTable, $selectField, $externalKey){
+        
+        $sql = "SELECT $selectField FROM $this->table 
+                INNER JOIN $joinTable ON $this->table.$this->primaryKey = $joinTable.$externalKey
+                WHERE $joinTable.$externalKey = $this->table.$this->primaryKey";
+    
+       
+        $stmt = $this->prepare($sql);
+    
+        $stmt->execute();
+    
+        $count = $stmt->rowCount();
+    
+        if ($count >= 1) {
+            return $stmt->fetch();
+        } else {
+            return false;
+        }
+    }
+
+    
 
 }
 

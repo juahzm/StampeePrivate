@@ -128,14 +128,14 @@ small {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    gap: 5px;
+    gap: 25px;
 }
 
 .flex-row {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    gap: 5px;
+    gap: 25px;
 }
 
 .logo {
@@ -161,15 +161,15 @@ label {
 }
 
 input {
-    width: 300px;
+
+    text-align: center;
 
 }
 
 .body-create {
     display: flex;
-    flex-basis: 700px;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 50px;
 
 }
 
@@ -182,8 +182,25 @@ input {
     display: flex;
     flex-direction: row;
     gap: 20px;
+    flex-wrap: wrap;
+    text-align: center;
+
+
+}
+
+.select_area_img {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+
 }
 
 select {
     font-size: 17px;
+}
+
+.input_description {
+    width: 400px;
+    height: 100px;
 }

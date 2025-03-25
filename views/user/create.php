@@ -45,7 +45,7 @@
             </label>
             <span class="errors"> {{errors.usernameuser}}</span>
             <label>Mot de passe
-                <input type="text" name="passworduser" value="{{user.passworduser}}" >
+                <input type="password" name="passworduser" value="{{user.passworduser}}" >
             </label>
             <span class="errors"> {{errors.passworduser}}</span>
             <label>Adresse courriel

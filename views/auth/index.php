@@ -41,7 +41,7 @@
             </label>
             <span class="errors"> {{errors.usernameuser}}</span>
             <label>Mot de passe
-                <input type="text" name="passworduser" value="{{user.passworduser}}" >
+                <input type="password" name="passworduser" value="{{user.passworduser}}" >
             </label>
             <span class="errors"> {{errors.passworduser}}</span>
             <input type="submit" value="Soumettre"class="bouton">
