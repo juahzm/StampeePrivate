@@ -23,6 +23,8 @@ class CatalogueController{
         return  View::render('catalogue/index');
 
     }
+
+    
 }
 
 

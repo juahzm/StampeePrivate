@@ -34,7 +34,16 @@ class Validator {
     }
     public function max($length) {
         if(strlen($this->value)> $length){
-            $this->errors[$this->key]= "$this->name doit contenir moins de 12 caractères";
+            $this->errors[$this->key]= "$this->name doit contenir moins de 25 caractères";
+            
+        }
+        return $this;
+
+    }
+
+    public function max2($length) {
+        if(strlen($this->value)> $length){
+            $this->errors[$this->key]= "$this->name doit contenir moins de 100 caractères";
             
         }
         return $this;

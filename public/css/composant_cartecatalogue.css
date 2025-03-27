@@ -1,0 +1,50 @@
+.Carte-image {
+    width: auto;
+    max-height: 250px;
+}
+
+.Carte {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: var(--couleurBlanc);
+    align-items: center;
+    transition: all 0.2s ease;
+    border-radius: 10px;
+    padding: 10px;
+    border: 0.5px solid #e0e0e0;
+}
+
+.Carte-titre {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.Carte:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.Carte-timbre {
+    width: 80px;
+    height: auto;
+
+}
+
+.Carte-positionRelative {
+    position: relative;
+}
+
+.Carte-positionAbsolute {
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    bottom: -35px;
+
+}
+
+.Carte-description {
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: center;
+}

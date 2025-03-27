@@ -53,18 +53,31 @@
 
             <div class="flex-row">
             <label class="select_area">Timbre certifié
-            <select name="certifietimbre" value="{{timbre.certifietimbre}}" >
-                <option value="1">Oui</option>
-                <option value="0">Non</option>
+            <select name="certifietimbre">
+                <option value="1" {% if timbre.certifietimbre == certifietimbre  %} selected {% endif %}>Oui</option>
+                <option value="0" {% if timbre.certifietimbre == certifietimbre %} selected {% endif %}>Non</option>
             </select>
-            </label>
+        </label>
+
+
+            <!-- <label class="select_area">Pays
+        <select name="countryidcountry">
+        {% for country in countries %}
+            <option value="{{country.idcountry}}" {%if timbre.countryidcountry == country.idcountry %} selected {% endif %}>{{ country.namecountry }}</option>
+        {% endfor %}
+        </select>
+        </label> -->
+            <!-- {% if errors.countryidcountry is defined %}
+                <span class="errors"> {{errors.countryidcountry}}</span>
+            {% endif %} -->
+
 
 
 
             <label class="select_area">Pays
                 <select name="countryidcountry">
                 {% for country in countries %}
-                <option value="{{country.idcountry}}">{{ country.namecountry}}</option>
+                <option value="{{country.idcountry}}" selected>{{ country.namecountry}}</option>
                 {% endfor %}
                 </select>
 
@@ -91,14 +104,16 @@
 </div>
 
 
-<div class="flex-row">
+<div class="flex-colum">
+    
                     <label class="select_area_img">Sélectionner l'image  
                     <input type="file" name="imageurl[]" id="imageurl1">
+                    {% for error in errors.imageurl %}
+                    <span class="errors">{{error.imageurl}}</span>
+                    {% endfor %}
                     </label>
                    
-                    {% for error in errors.imageurl %}
-                    <span class="error">{{error}}</span>
-                    {% endfor %}
+                  
                   
             
                     <label class="select_area">C'est l'image principale?
@@ -108,20 +123,19 @@
 
 </div>
 
-<div class="flex-row">
+<div class="flex-colum">
 
                     <label class="select_area_img">Sélectionner l'image   
                     <input type="file" name="imageurl[]" id="imageurl2">
+                    {% for error in errors.imageurl %}
+                    <span class="errors">{{error}}</span>
+                    {% endfor %}
                     </label>
                     
-                    {% for error in errors.imageurl %}
-                    <span class="error">{{error}}</span>
-                    {% endfor %}
-                   
-            
+                
                     <label class="select_area">C'est l'image principale?
                     <input type="radio" name="imageprimary" value="1"> Oui
-                   
+                
                     </label>
 
 </div>

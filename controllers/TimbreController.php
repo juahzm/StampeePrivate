@@ -43,10 +43,11 @@ class TimbreController{
             $data['useriduser'] = $_SESSION['id_user'];
 
         $validator = new Validator;
-        $validator->field('nametimbre', $data['nametimbre'], 'le nom du timbre')-> required()->max(20);
-        $validator->field('descriptiontimbre', $data['descriptiontimbre'], 'la description')-> required()->max(200);
+        $validator->field('nametimbre', $data['nametimbre'], 'le nom du timbre')-> required()->max(25);
+        $validator->field('descriptiontimbre', $data['descriptiontimbre'], 'la description')-> required()->max2(100);
         $validator->field('datecreationtimbre', $data['datecreationtimbre'], 'la date')-> required();
         $validator->field('tiragetimbre', $data['tiragetimbre'], 'la tirage')-> required()->number();
+        
         if ($_FILES['imageurl']['size'] > 0) {
             foreach ($_FILES['imageurl']['name'] as $key => $fileName){
             $validator->field('imageurl', $_FILES, 'Limage')->image($key);
@@ -75,6 +76,8 @@ class TimbreController{
             $data['imageurl'] = basename($image); // Prepare the data for insert
 
           $insertimage = $imageobj->insert($data);
+
+      
         
     
 }
@@ -84,8 +87,17 @@ class TimbreController{
         
         
 }else{
+
+
     $errors = $validator->getErrors();
-        return View::render('timbre/create', ['errors' => $errors, 'timbre'=>$data, 'imageobj'=>$data]);
+    $c1 = new Country;
+    $c1select= $c1->select();
+    $co1 = new Color;
+    $co1select= $co1->select();
+    $con1 = new Conditions;
+    $con1select = $con1->select();
+
+        return View::render('timbre/create', ['errors' => $errors, 'timbre'=>$data, 'insertimage'=>$data, 'countries'=> $c1select, 'conditions'=> $con1select, 'colors'=> $co1select]);
 
 
 }
@@ -96,7 +108,10 @@ class TimbreController{
 
 }
 
-        
+// echo "<pre>";
+// print_r($insertimage);  // Outputs array in a readable format
+// echo "</pre>";
+// die();     
 
         
   
