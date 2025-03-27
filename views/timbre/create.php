@@ -93,22 +93,31 @@
 
 <div class="flex-row">
                     <label class="select_area_img">Sélectionner l'image  
-                    <input type="file" name="imageurl" id="imageurl1">
+                    <input type="file" name="imageurl[]" id="imageurl1">
                     </label>
-                      
+                   
+                    {% for error in errors.imageurl %}
+                    <span class="error">{{error}}</span>
+                    {% endfor %}
+                  
             
                     <label class="select_area">C'est l'image principale?
                     <input type="radio" name="imageprimary" value="1"> Oui
+                  
                     </label>
 
 </div>
-<!-- 
+
 <div class="flex-row">
 
                     <label class="select_area_img">Sélectionner l'image   
                     <input type="file" name="imageurl[]" id="imageurl2">
                     </label>
-                      
+                    
+                    {% for error in errors.imageurl %}
+                    <span class="error">{{error}}</span>
+                    {% endfor %}
+                   
             
                     <label class="select_area">C'est l'image principale?
                     <input type="radio" name="imageprimary" value="1"> Oui
@@ -116,11 +125,14 @@
                     </label>
 
 </div>
+
+<!-- 
 <div class="flex-row">
 
                     <label class="select_area_img">Sélectionner l'image 
                     <input type="file" name="imageurl[]" id="imageurl3">
                     </label>
+                    <span class="error">{{error}}</span>
                       
             
                     <label class="select_area">C'est l'image principale?
@@ -129,7 +141,7 @@
                     </label>
 </div>
  -->
-
+                
 
             <input type="submit" value="Soumettre"class="bouton">
 

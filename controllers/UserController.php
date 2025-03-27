@@ -46,7 +46,7 @@ class UserController {
 
         if($insert) {
            
-            return view::redirect('user/accueil/login');
+            return View::redirect('user/accueil/login');
 
         }
 

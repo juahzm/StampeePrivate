@@ -9,6 +9,7 @@ use App\Models\Conditions;
 use App\Models\Country;
 use App\Models\Timbre;
 use App\Models\Image;
+use App\Providers\Validator;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -39,96 +40,69 @@ class TimbreController{
 
     public function store($data =[]) {
 
-    
-     $data['useriduser'] = $_SESSION['id_user'];
+            $data['useriduser'] = $_SESSION['id_user'];
+
+        $validator = new Validator;
+        $validator->field('nametimbre', $data['nametimbre'], 'le nom du timbre')-> required()->max(20);
+        $validator->field('descriptiontimbre', $data['descriptiontimbre'], 'la description')-> required()->max(200);
+        $validator->field('datecreationtimbre', $data['datecreationtimbre'], 'la date')-> required();
+        $validator->field('tiragetimbre', $data['tiragetimbre'], 'la tirage')-> required()->number();
+        if ($_FILES['imageurl']['size'] > 0) {
+            foreach ($_FILES['imageurl']['name'] as $key => $fileName){
+            $validator->field('imageurl', $_FILES, 'Limage')->image($key);
+        }
+        }
+
+        if ($validator->isSuccess()) {
+
 
         $timbre = new Timbre;
         $insert = $timbre->insert($data);
         if($insert) {
-
             $idtimbre = $timbre->getLastInsertId();
-           
         }
 
-        $image = new Image;
-
-         echo "<pre>";
-        print_r($image);
-        echo "</pre>";
-    
-
-
+        $imageobj = new Image;
         $data['timbreidtimbre'] = $idtimbre;
-
-        $images = $_FILES['imageurl'];
-
-        echo "<pre>";
-        print_r($images);
-        echo "</pre>";
-        
-
-              $folderupload = __DIR__ . '/../public/uploads/';
-              echo "<pre>";
-              print_r($folderupload);
-              echo "</pre>";
-              
-      
-        $targetfile = $folderupload . basename($_FILES['imageurl']['name']);
-        echo "<pre>";
-              print_r($targetfile);
-              echo "</pre>";
+         $images = $_FILES['imageurl'];
+         
+            for ($index = 0; $index < count($images['name']); $index++) {
+             $image = $images['name'][$index];
             
-        $moved = move_uploaded_file($_FILES['imageurl']['tmp_name'], $targetfile);
-        echo "<pre>";
-        print_r($moved);
-        echo "</pre>";
-       
-        $data['imageurl'] = basename($_FILES['imageurl']['name']);
+             $folderupload = __DIR__ . '/../public/uploads/'; 
+            $targetfile = $folderupload . basename($image);//target location
+            $moved = move_uploaded_file($images['tmp_name'][$index], $targetfile);// Move the file to the target location
+            $data['imageurl'] = basename($image); // Prepare the data for insert
 
+          $insertimage = $imageobj->insert($data);
+        
+    
+}
+        if($insertimage &&  $insert) {
+            return View::redirect('user/catalogue');}   
 
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
-        $image->insert($data);
-
-        die();
-
-
-
-        // foreach ($image as $images) {
-           
-        // $folderupload = __DIR__ . '/../public/uploads/';
-        // $targetfile = $folderupload . basename($_FILES["imageurl"]["name"]);
-        // $moved = move_uploaded_file($_FILES["imageurl"]["tmp_name"], $targetfile);
-        // $data['imageurl'] = basename($_FILES["imageurl"]["name"]);
-
-   
-        //     $image->insert($data);
-        // };
-       
-  
-       
-   
-
-
-        if($insertimage) {
-           
-            echo "Merci Dieu image uploaded";
-
-        }  else {
-    echo "ne marche pas, aide Dieu";
-    }
-
-       
-    }
+        
+        
+}else{
+    $errors = $validator->getErrors();
+        return View::render('timbre/create', ['errors' => $errors, 'timbre'=>$data, 'imageobj'=>$data]);
 
 
 }
 
-        // echo "<pre>";
-        // print_r($insertimage);
-        // echo "</pre>";
-        // die();
+
+}
+
+
+}
+
+        
+
+        
+  
+
+   
+
 
 
 
