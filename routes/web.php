@@ -18,9 +18,11 @@ Route::get('/user/profil', 'ProfilController@index');
 Route::get('/user/timbre/create', 'TimbreController@create');
 Route::post('/user/timbre/create', 'TimbreController@store');
 
-Route::post('/user/catalogue', 'CatalogueController@index');
 Route::get('/user/catalogue', 'CatalogueController@index');
+Route::post('/user/catalogue', 'CatalogueController@index');
 
+Route::get('/user/catalogue/show', 'TimbreController@show');
+Route::post('/user/catalogue/show', 'TimbreController@show');
 
 
 

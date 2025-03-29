@@ -6,6 +6,7 @@
 .Carte {
     display: flex;
     flex-direction: column;
+    flex-basis: 300px;
     gap: 15px;
     background-color: var(--couleurBlanc);
     align-items: center;

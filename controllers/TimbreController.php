@@ -38,6 +38,9 @@ class TimbreController{
 
     }
 
+    
+    
+
     public function store($data =[]) {
 
             $data['useriduser'] = $_SESSION['id_user'];
@@ -82,7 +85,8 @@ class TimbreController{
     
 }
         if($insertimage &&  $insert) {
-            return View::redirect('user/catalogue');}   
+            return View::redirect('user/catalogue?idtimbre='. $insert . $insertimage);}
+            // return View::redirect('user/catalogue');}    
 
         
         
@@ -106,10 +110,53 @@ class TimbreController{
 }
 
 
+
+public function show($data=[]) {
+    // print_r($data);
+
+    if(isset($data['idtimbre'])&& $data['idtimbre']!=null){
+        $timbre = new Timbre;
+       
+       
+        if($selectId = $timbre->selectId($data['idtimbre'])){
+           $timbreData = $selectId[0];
+           $coloridcolor = $timbreData['coloridcolor'];
+           echo "<pre>";
+            print_r($coloridcolor);  
+        echo "</pre>";
+            // die();
+
+            $color = new Color;
+            $select2 = $color->selectId($timbreData['coloridcolor']);
+            echo "<pre>";
+            print_r($select2); 
+        echo "</pre>";
+        // die();
+
+
+            $timbreData['coloridcolor'] = $select2[0]['namecolor'];
+            
+
+            // $manufacturer = new Manufacturer;
+            // $select2 = $manufacturer->selectId($selectId['Manufacturer_idManufacturer']);
+    
+            // $selectId['manufacturer'] = $select2['manufacturerName'];
+
+            
+        return View::render('catalogue/show', ['timbre'=>$timbreData, 'color' => $select2[0]]);
+    }else{
+        return View::render('error', ['msg'=>'le timbre n existe pas']);
+    }
+    
+    }
+    return View::render('error');
+    }
+
 }
 
+
 // echo "<pre>";
-// print_r($insertimage);  // Outputs array in a readable format
+// print_r($insertimage);  
 // echo "</pre>";
 // die();     
 

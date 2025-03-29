@@ -94,11 +94,13 @@
                             src="{{asset}}/images/star.png"
                             alt="favorites"
                         />
+                        <a href="{{ base }}/user/profil">
                         <img
-                            class="png"
-                            src="{{asset}}/images/compte.png"
+                        class="png"
+                        src="{{asset}}/images/compte.png"
                             alt="votrecompte"
-                        />
+                            />
+                            </a>
                     </div>
 
                     <div>
@@ -123,7 +125,7 @@
             <div class="navigation_principal rosarivo-regular-italic">
               
                 <ul class="flex-row">
-                    <li><a href="">Le Catalogue</a></li>
+                    <li><a href="{{base}}/user/catalogue">Le Catalogue</a></li>
                     <li><a href="">Archive</a></li>
                     <li><a href="{{base}}/user/timbre/create">Créer un enchère</a></li>
                 </ul>
@@ -152,90 +154,81 @@
             <div class="entete-fildariane">
                 <div class="entete-plus">
                     <div class="main-plus">
-                        <div class="main-plus-conteneur entete-fildariane-plus">
-                            <a class="main-button-next" href="">◀</a>
-                        </div>
-                        <div class="main-plus-conteneur entete-fildariane-plus">
-                            <a class="main-button-next" href="">▶</a>
-                        </div>
+                       
                     </div>
 
                     <div>
                         <p>Accueil > Le catalogue</p>
                     </div>
                     <div><p>1-12 sur plus de 333 résultats</p></div>
+                    <div class="main-plus">
+                    <div class="main-plus-conteneur"><a href="">1</a></div>
+                    <div class="main-plus-conteneur"><a href="">2</a></div>
+                    <div class="main-plus-conteneur"><a href="">3</a></div>
+                    <div class="main-plus-conteneur">
+                    <a class="main-button-next" href="">▶</a>
                 </div>
             </div>
-        </header>
-<main class="main-conteneur-principal">
+                </div>
+            </div>
 
             <div class="titres rosarivo-regular-italic">
                 <h2>Le catalogue</h2>
             </div>
+            
+        </header>
 
+       
 
+       
+<main class="main-conteneur-principal">
+
+            
+
+            {% for timbre in timbres %}
             <div class="main-Grille">
+
+          
 
 
             <article class="Carte">
                     <div class="Carte-titre titres rosarivo-regular-italic">
                         <h3>{{timbre.nametimbre}}</h3>
                     </div>
-
+                    {% if timbre.imageurl %}
                     <picture>
                         <img
                             class="Carte-image"
-                            src="{{image.imageurl}}"
+                            src="{{ constant('UPLOAD') ~ '/' ~ timbre.imageurl }}"
                             alt="image"
                         />
                     </picture>
+                    {% else %}
+                    <p>pas disponible</p>
+                    {% endif %}
                     
                       
                         <small>{{timbre.descriptiontimbre}}</small>
                             <small><strong>Mar 2025, 2 CAD</strong></small>
                     
 
-                    <img
-                        class="fiche-icon"
-                        src="{{asset}}/images/star.png"
-                        alt="etoile"
-                    />
+                            <a href="your-link-here">
+                            <img class="fiche-icon" src="{{asset}}/images/star.png" alt="etoile" />
+                            </a>
                     <div class="flex-row">
                         <p>⏱︎ 05:2:60:11</p>
-                        <a class="bouton" href="">Voir</a>
+                        <a class="bouton" href="{{base}}/user/catalogue/show?idtimbre={{timbre.idtimbre}}">Voir</a>
                     </div>
                 </article>
             </div>
 
-
-           
-
+            {% endfor %}
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="main-plus">
-                <div class="main-plus-conteneur"><a href="">1</a></div>
-                <div class="main-plus-conteneur"><a href="">2</a></div>
-                <div class="main-plus-conteneur"><a href="">3</a></div>
-                <div class="main-plus-conteneur">
-                    <a class="main-button-next" href="">▶</a>
-                </div>
-</div>
 
 
 

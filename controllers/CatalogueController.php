@@ -18,14 +18,39 @@ class CatalogueController{
     
 
     public function index() {
-        
 
-        return  View::render('catalogue/index');
+        $timbre = new Timbre;
+        $select = $timbre->select();
+        $image = new Image;
+        $selectimg = $image->select();
+        // echo "<pre>";
+        // print_r($select);
+        // echo "</pre>";
+        // die();
+
+        foreach ($select as &$timbre) {
+            // Find the associated image for each timbre using timbreidtimbre
+            $timbre['imageurl'] = null; // Default value if no image is found
+            foreach ($selectimg as $img) {
+                if ($img['timbreidtimbre'] == $timbre['idtimbre']) {
+                    $timbre['imageurl'] = $img['imageurl']; // Set the imageurl field directly in the timbre object
+                    break; // Stop searching once the matching image is found
+                }
+            }
+        }
+    
+        
+        return  View::render('catalogue/index', ['timbres' => $select]);
 
     }
 
-    
+
+
+
+ 
 }
+
+
 
 
 

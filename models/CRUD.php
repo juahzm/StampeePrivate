@@ -9,7 +9,7 @@ abstract class CRUD extends \PDO {
         parent::__construct('mysql:host=localhost; dbname=stampee; port=3306; charset=utf8', 'root', '');
     }
 
-    public function getLastInsertId() {
+    final public function getLastInsertId() {
         return $this->lastInsertId();
     }
 

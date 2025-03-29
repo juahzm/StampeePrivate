@@ -88,11 +88,13 @@
                             src="{{asset}}/images/star.png"
                             alt="favorites"
                         />
+                        <a href="{{ base }}/user/profil">
                         <img
-                            class="png"
-                            src="{{asset}}/images/compte.png"
+                        class="png"
+                        src="{{asset}}/images/compte.png"
                             alt="votrecompte"
-                        />
+                            />
+                            </a>
                     </div>
 
                     <div>
@@ -117,7 +119,7 @@
             <div class="navigation_principal rosarivo-regular-italic">
               
                 <ul class="flex-row">
-                    <li><a href="">Le Catalogue</a></li>
+                    <li><a href="{{base}}/user/catalogue">Le Catalogue</a></li>
                     <li><a href="">Archive</a></li>
                     <li><a href="{{base}}/user/timbre/create">Créer un enchère</a></li>
                 </ul>
