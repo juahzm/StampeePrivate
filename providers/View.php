@@ -10,6 +10,7 @@ class View {
         $twig = new Environment($loader);
         $twig->addGlobal('asset', ASSET);
         $twig->addGlobal('base', BASE);
+        $twig->addGlobal('upload', UPLOAD);
         $twig->addGlobal('session', $_SESSION);
         echo $twig->render($template.'.php', $data);
         

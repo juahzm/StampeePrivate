@@ -1,4 +1,4 @@
-{{ include('layouts/header.php', {title:'Profil dutilisateur'})}}
+{{ include('layouts/header.php', {title:'Créer un timbre'})}}
 
 
 
@@ -10,7 +10,7 @@
             </div>
 
 
-            <div class="flex-row">
+            <div class="flex-column">
 
             <div class="lato-regular usercreatecontainer">
 
@@ -54,8 +54,8 @@
             <div class="flex-row">
             <label class="select_area">Timbre certifié
             <select name="certifietimbre">
-                <option value="1" {% if timbre.certifietimbre == certifietimbre  %} selected {% endif %}>Oui</option>
-                <option value="0" {% if timbre.certifietimbre == certifietimbre %} selected {% endif %}>Non</option>
+                <option value="1" {% if timbre.certifietimbre == "Oui"  %} selected {% endif %}>Oui</option>
+                <option value="0" {% if timbre.certifietimbre == "Non" %} selected {% endif %}>Non</option>
             </select>
         </label>
 
@@ -103,59 +103,42 @@
               </label>
 </div>
 
-
-<div class="flex-colum">
-    
-                    <label class="select_area_img">Sélectionner l'image  
-                    <input type="file" name="imageurl[]" id="imageurl1">
-                    {% for error in errors.imageurl %}
-                    <span class="errors">{{error.imageurl}}</span>
-                    {% endfor %}
-                    </label>
-                   
-                  
-                  
-            
-                    <label class="select_area">C'est l'image principale?
-                    <input type="radio" name="imageprimary" value="1"> Oui
-                  
-                    </label>
-
+<div class="timbrecreatecontainer flex-column">
+    <label class="select_area_img">Sélectionner l'image principale
+        <input type="file" name="Imageurl[]" id="imageurl1" required>
+        {% for error in errors.Imageurl %}
+            <span class="errors">{{ error.Imageurl }}</span>
+        {% endfor %}
+    </label>
 </div>
 
-<div class="flex-colum">
-
-                    <label class="select_area_img">Sélectionner l'image   
-                    <input type="file" name="imageurl[]" id="imageurl2">
-                    {% for error in errors.imageurl %}
-                    <span class="errors">{{error}}</span>
-                    {% endfor %}
-                    </label>
-                    
-                
-                    <label class="select_area">C'est l'image principale?
-                    <input type="radio" name="imageprimary" value="1"> Oui
-                
-                    </label>
-
+<div class="timbrecreatecontainer flex-column">
+    <label class="select_area_img">Sélectionner une autre image
+        <input type="file" name="Imageurl[]" id="imageurl2">
+        {% for error in errors.Imageurl %}
+            <span class="errors">{{ error }}</span>
+        {% endfor %}
+    </label>
 </div>
 
-<!-- 
-<div class="flex-row">
-
-                    <label class="select_area_img">Sélectionner l'image 
-                    <input type="file" name="imageurl[]" id="imageurl3">
-                    </label>
-                    <span class="error">{{error}}</span>
-                      
-            
-                    <label class="select_area">C'est l'image principale?
-                <input type="radio" name="imageprimary" value="1"> Oui
-                
-                    </label>
+<div class="timbrecreatecontainer flex-column">
+    <label class="select_area_img">Sélectionner une autre image
+        <input type="file" name="Imageurl[]" id="imageurl2">
+        {% for error in errors.Imageurl %}
+            <span class="errors">{{ error }}</span>
+        {% endfor %}
+    </label>
 </div>
- -->
-                
+
+<div class=" timbrecreatecontainer flex-column">
+    <label class="select_area_img">Sélectionner une autre image
+        <input type="file" name="Imageurl[]" id="imageurl2">
+        {% for error in errors.Imageurl %}
+            <span class="errors">{{ error }}</span>
+        {% endfor %}
+    </label>
+</div>
+
 
             <input type="submit" value="Soumettre"class="bouton">
 

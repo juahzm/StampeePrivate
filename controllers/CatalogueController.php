@@ -16,38 +16,52 @@ ini_set('display_errors', 1);
 
 class CatalogueController{
     
-
+    
     public function index() {
-
+        
         $timbre = new Timbre;
         $select = $timbre->select();
         $image = new Image;
         $selectimg = $image->select();
-        // echo "<pre>";
-        // print_r($select);
-        // echo "</pre>";
-        // die();
-
-        foreach ($select as &$timbre) {
-            // Find the associated image for each timbre using timbreidtimbre
-            $timbre['imageurl'] = null; // Default value if no image is found
+        
+       
+      
+        
+        foreach ($select as $timbreRecord) {
+            
+             
             foreach ($selectimg as $img) {
-                if ($img['timbreidtimbre'] == $timbre['idtimbre']) {
-                    $timbre['imageurl'] = $img['imageurl']; // Set the imageurl field directly in the timbre object
-                    break; // Stop searching once the matching image is found
+
+            //     echo "<pre>";
+            //     print_r($selectimg); 
+            // echo "</pre>";
+           
+
+
+                if ($img['timbreidtimbre'] == $timbreRecord['idtimbre'] && $img['imageprimary'] == 1) {
+                    $timbreRecord['Imageurl'] = $img['Imageurl']; // Set the imageurl field directly in the timbre object
+                      
+               echo "<pre>";
+               print_r($img['Imageurl']); 
+           echo "</pre>";
+           
                 }
             }
         }
-    
+        
+               echo "<pre>";
+            print_r($img['timbreidtimbre']); 
+        echo "</pre>";
+       
         
         return  View::render('catalogue/index', ['timbres' => $select]);
-
+        
     }
-
-
-
-
- 
+    
+    
+    
+    
+    
 }
 
 

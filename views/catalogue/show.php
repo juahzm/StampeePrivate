@@ -183,7 +183,7 @@
                 <div>
                     <img
                         id="mainimagezoom"
-                        src="{{ constant('UPLOAD') ~ '/' ~ timbre.imageurl }}"
+                        src="{{ constant('UPLOAD') ~ '/' ~ timbre.Imageurl }}"
                         alt="julesverne"
                     />
                 </div>
@@ -207,12 +207,7 @@
                             src=""
                             alt="zoominImg3"
                     /></a>
-                    <a href=""
-                        ><img
-                            class="fiche-conteneur-image"
-                            src=""
-                            alt="zoominImg4"
-                    /></a>
+                
                 </div>
 
                 <div class="fiche-conteneur">
@@ -268,6 +263,11 @@
                             <div class="flex-row lato-regular">
                                 <h4 class="h4">Dimensions:</h4>
                                 <p>{{timbre.dimensiontimbre}}</p>
+                            </div>
+
+                            <div class="flex-row lato-regular">
+                                <h4 class="h4">Timbre Certifié</h4>
+                                <p>{{timbre.certifietimbre}}</p>
                             </div>
                         </div>
 

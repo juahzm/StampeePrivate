@@ -104,6 +104,20 @@ small {
     margin-top: 50px;
 }
 
+.timbrecreatecontainer {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    background-color: var(--couleurBleuPrussian);
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    border: 0.5px solid #e0e0e0;
+    margin-top: 15px;
+    color: white;
+
+}
+
 .bouton {
     padding: 10px;
     display: inline-block;
@@ -151,6 +165,7 @@ small {
 
 img {
     max-width: 100%;
+
 }
 
 label {
@@ -163,6 +178,7 @@ label {
 input {
 
     text-align: center;
+    width: 400px;
 
 }
 
