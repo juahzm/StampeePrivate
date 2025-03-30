@@ -140,9 +140,9 @@ public function show($data=[]) {
             $image = new Image;
             $selectIdimg = $image->select();
            
-            echo "<pre>";
-            print_r($selectIdimg);  
-        echo "</pre>";
+        //     echo "<pre>";
+        //     print_r($selectIdimg);  
+        // echo "</pre>";
            
 
         if ($selectIdimg[0]['timbreidtimbre'] == $data['idtimbre'] && $selectIdimg[0]['imageprimary'] == 1){
@@ -150,7 +150,7 @@ public function show($data=[]) {
             $data['Imageurl'] = $selectIdimg[0]['Imageurl'];
                  echo "<pre>";
             print_r($data['Imageurl']); 
-        echo "</pre>";}
+                echo "</pre>";}
 
 
             $color = new Color;
@@ -180,6 +180,78 @@ public function show($data=[]) {
     }
     return View::render('error');
     }
+
+
+
+    public function edit($data=[]){
+       
+
+    if(isset($data['idtimbre']) && $data['idtimbre']!=null){
+        $timbre = new Timbre;
+    
+        if($selectId = $timbre->selectId($data['idtimbre'])){
+            $timbreData = $selectId[0];
+
+        echo "<pre>";
+        print_r($selectId);  
+        echo "</pre>";
+
+        $country = new Country;
+        $selectall = $country->select();
+        $condition = new Conditions;
+        $conditionselectall = $condition->select();
+        $color = new Color;
+        $colorselect = $color->select();
+
+       //this pass an specficif value ....bingo
+        // $country = new Country;
+        // $select3 = $country->selectId($timbreData['countryidcountry']);
+        // $timbreData['countryidcountry'] = $select3[0]['namecountry'];
+            // return View::render('timbre/edit', ['timbre' => $selectId, 'countries' => [$select3[0]]]);
+            return View::render('timbre/edit', ['timbre' => $selectId, 'countries' => $selectall, 'conditions'=> $conditionselectall, 'colors'=> $colorselect ]);
+         }
+
+    }
+    return View::render('error');
+     }
+
+     public function update($data=[], $get=[]){
+
+        $data['useriduser'] = $_SESSION['id_user'];
+
+        $validator = new Validator;
+        $validator->field('nametimbre', $data['nametimbre'], 'le nom du timbre')-> required()->max(25);
+        $validator->field('descriptiontimbre', $data['descriptiontimbre'], 'la description')-> required()->max2(100);
+        $validator->field('datecreationtimbre', $data['datecreationtimbre'], 'la date')-> required();
+        $validator->field('tiragetimbre', $data['tiragetimbre'], 'la tirage')-> required()->number();
+        
+        if ($_FILES['Imageurl']['size'] > 0) {
+            foreach ($_FILES['Imageurl']['name'] as $key => $fileName){
+            $validator->field('Imageurl', $_FILES, 'Limage')->image($key);
+        }
+        }
+
+        if ($validator->isSuccess()) {
+
+            $timbre = new Timbre;
+            $update = $timbre->update($data, $get['idtimbre']);
+
+
+            if($update){
+                return view::redirect('user/catalogue');
+            }else{
+                return View::render('error');
+                   }
+            }else{
+            
+                $errors = $validator->getErrors();
+                return View::render('timbre/edit', ['errors'=>$errors, 'timbre'=>$data]);
+
+        }
+
+        
+     }
+
 
 }
 

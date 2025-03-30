@@ -38,6 +38,13 @@
     font-size: 14px;
     width: fit-content;
     text-decoration: none;
+    width: 60px;
+}
+
+.fiche-bouton-edit {
+    margin-top: 30px;
+    display: block;
+    align-self: center;
 }
 
 .fiche-bouton:hover {

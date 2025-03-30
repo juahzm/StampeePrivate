@@ -157,8 +157,8 @@
             <div class="carte-conteneur">
                 <div class="titres rosarivo-regular-italic-grande">
                     <h3>{{ timbre.nametimbre }}</h3>
-                </div>
-                <div class="fiche-conteneur">
+                            </div>
+                        <div class="fiche-conteneur">
                     <a href=""
                         ><img
                             id="imagetimbrezoomin"
@@ -215,40 +215,40 @@
                 </div>
 
                 <div class="fiche-conteneur">
-                    <a href=""
-                        ><img
+                            <a href=""
+                            ><img
                             class="icon"
                             src="{{asset}}/images/enveloppe.png"
                             alt="enveloppe"
-                    /></a>
-                    <a href=""
-                        ><img
+                            /></a>
+                            <a href=""
+                            ><img
                             class="icon"
                             src="{{asset}}/images/Partageiconbp.png"
                             alt="partager"
-                    /></a>
-                    <a href=""
-                        ><img
+                            /></a>
+                            <a href=""
+                            ><img
                             class="icon"
                             src="{{asset}}/images/star.png"
                             alt="Favorites"
-                    /></a>
-                </div>
-            </div>
+                            /></a>
+                            </div>
+                            </div>
 
-            <div class="fiche-tabs">
-                <input
-                    type="radio"
-                    class="fiche-tabs_radio"
-                    name="tabs"
-                    id="info"
-                    checked
-                />
-                <label for="info" class="fiche-tabs_label">Info</label>
-                <div class="titres fiche-tabs_contenu rosarivo-regular">
-                    <h3>Info</h3>
-                    <article class="fiche-tabs-contenu-flex">
-                        <div>
+                            <div class="fiche-tabs">
+                            <input
+                            type="radio"
+                            class="fiche-tabs_radio"
+                                name="tabs"
+                                id="info"
+                                checked
+                                />
+                                <label for="info" class="fiche-tabs_label">Info</label>
+                                <div class="titres fiche-tabs_contenu rosarivo-regular">
+                                <h3>Info</h3>
+                            <article class="fiche-tabs-contenu-flex">
+                            <div>
                             <div class="flex-row lato-regular">
                                 <h4 class="h4">Date de creation:</h4>
                                 <p>{{timbre.datecreationtimbre}}</p>
@@ -307,40 +307,52 @@
                                 <h4 class="h4">Coups de cœur du Lord:</h4>
                                
                             </div>
+                            </div>
+                                </article>
+                                </div>
+
+                            <input
+                            type="radio"
+                            class="fiche-tabs_radio"
+                            name="tabs"
+                            id="description"
+                    
+                            />
+                            <label for="description" class="fiche-tabs_label"
+                             >Description</label
+                             >
+                                <div class="titres fiche-tabs_contenu rosarivo-regular">
+                                <h3>Description</h3>
+                                <p>{{timbre.descriptiontimbre}}
+                                </p>
+                                </div>
+
+                                <input
+                                type="radio"
+                            class="fiche-tabs_radio"
+                            name="tabs"
+                             id="valeur"
+                    
+                                />
+                                <label for="valeur" class=" fiche-tabs_label"
+                                >Valeur Historique</label
+                                >
+                                <div class=" titres fiche-tabs_contenu rosarivo-regular">
+                                <h3>Valeur Historique</h3>
+                                <p>{{timbre.historyvaluetimbre}}
+                                </p>
+                
+                
+                            </div>
                         </div>
-                    </article>
-                </div>
+                    </div>
+                </div>      
 
-                <input
-                    type="radio"
-                    class="fiche-tabs_radio"
-                    name="tabs"
-                    id="description"
-                    checked
-                />
-                <label for="description" class="fiche-tabs_label"
-                    >Description</label
-                >
-                <div class="titres fiche-tabs_contenu rosarivo-regular">
-                    <h3>Description</h3>
-                    <p>{{timbre.descriptiontimbre}}
-                    </p>
-                </div>
+           
 
-                <input
-                    type="radio"
-                    class="fiche-tabs_radio"
-                    name="tabs"
-                    id="valeur"
-                    checked
-                />
-                <label for="valeur" class=" fiche-tabs_label"
-                    >Valeur Historique</label
-                >
-                <div class=" titres fiche-tabs_contenu rosarivo-regular">
-                    <h3>Valeur Historique</h3>
-                    <p>{{timbre.historyvaluetimbre}}
-                    </p>
+                <div class="fiche-bouton-edit">
+                    <a href="{{base}}/timbre/edit?idtimbre={{timbre.idtimbre}}" class="fiche-bouton-blue rosarivo-regular">Edit</a>
+                
                 </div>
 
             </div>
