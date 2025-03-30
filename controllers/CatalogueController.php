@@ -27,7 +27,7 @@ class CatalogueController{
        
       
         
-        foreach ($select as $timbreRecord) {
+        foreach ($select as &$timbreRecord) {
             
              
             foreach ($selectimg as $img) {
@@ -37,21 +37,28 @@ class CatalogueController{
             // echo "</pre>";
            
 
-
                 if ($img['timbreidtimbre'] == $timbreRecord['idtimbre'] && $img['imageprimary'] == 1) {
                     $timbreRecord['Imageurl'] = $img['Imageurl']; // Set the imageurl field directly in the timbre object
-                      
-               echo "<pre>";
-               print_r($img['Imageurl']); 
-           echo "</pre>";
+                     break; 
+        //        echo "<pre>";
+        //        print_r($img['Imageurl']); 
+        //    echo "</pre>";
+
+        //    echo "<pre>";
+        //    print_r($timbreRecord); 
+        //      echo "</pre>";
+        //      echo "<pre>";
+        //      print_r($img['Imageurl']); 
+        //      echo "</pre>";
            
                 }
             }
         }
         
-               echo "<pre>";
-            print_r($img['timbreidtimbre']); 
-        echo "</pre>";
+        //        echo "<pre>";
+        //     print_r($img['timbreidtimbre']); 
+        // echo "</pre>";
+        
        
         
         return  View::render('catalogue/index', ['timbres' => $select]);

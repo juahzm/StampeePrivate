@@ -181,11 +181,15 @@
                 </div>
 
                 <div>
+                {% if timbre.Imageurl %}
                     <img
                         id="mainimagezoom"
-                        src="{{ constant('UPLOAD') ~ '/' ~ timbre.Imageurl }}"
+                        src="{{upload}}{{timbre.Imageurl}}"
                         alt="julesverne"
                     />
+                    {% else %}
+                    <p>pas disponible</p>
+                    {% endif %}
                 </div>
 
                 <div class="fiche-conteneur">

@@ -123,7 +123,7 @@ class TimbreController{
 
 
 public function show($data=[]) {
-    // print_r($data);
+    print_r($data);
 
     if(isset($data['idtimbre'])&& $data['idtimbre']!=null){
         $timbre = new Timbre;
@@ -131,11 +131,27 @@ public function show($data=[]) {
        
         if($selectId = $timbre->selectId($data['idtimbre'])){
            $timbreData = $selectId[0];
-        //    $coloridcolor = $timbreData['coloridcolor'];
+           
         //    echo "<pre>";
-        //     print_r($timbreData);  
+        //     print_r($selectId);  
         // echo "</pre>";
-        //     die();
+            
+
+            $image = new Image;
+            $selectIdimg = $image->select();
+           
+            echo "<pre>";
+            print_r($selectIdimg);  
+        echo "</pre>";
+           
+
+        if ($selectIdimg[0]['timbreidtimbre'] == $data['idtimbre'] && $selectIdimg[0]['imageprimary'] == 1){
+            $data['idtimbre'] = $selectIdimg[0]['timbreidtimbre'];
+            $data['Imageurl'] = $selectIdimg[0]['Imageurl'];
+                 echo "<pre>";
+            print_r($data['Imageurl']); 
+        echo "</pre>";}
+
 
             $color = new Color;
             $select2 = $color->selectId($timbreData['coloridcolor']);

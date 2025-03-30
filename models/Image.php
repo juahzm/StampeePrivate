@@ -11,6 +11,6 @@ ini_set('display_errors', 1);
 class Image extends CRUD {
     protected $table='image';
     protected $primaryKey='idimage';
-    protected $fillable = ['imageprimary', 'imageurl', 'timbreidtimbre'];
+    protected $fillable = ['imageprimary', 'Imageurl', 'timbreidtimbre'];
     protected $externalKey = 'timbreidtimbre';
 }

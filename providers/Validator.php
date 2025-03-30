@@ -91,23 +91,23 @@ class Validator {
         
        
         
-         if(empty($this->value['imageurl']['tmp_name'][$key])){
-            $this->errors[$this->key] [$key] = "Aucun fiche télechargé" . ($key +1);
+         if(empty($this->value['Imageurl']['tmp_name'][$key])){
+            $this->errors[$this->key] [$key] = "Aucun fiche téleversé" . ($key +1);
             return $this;
 
          }
 
-        $target_file = $_SERVER["DOCUMENT_ROOT"] . UPLOAD . basename($this->value['imageurl']['name'][$key]);
+        $target_file = $_SERVER["DOCUMENT_ROOT"] . UPLOAD . basename($this->value['Imageurl']['name'][$key]);
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
         // Check if its an image
-        $check = getimagesize($this->value['imageurl']['tmp_name'][$key]);
+        $check = getimagesize($this->value['Imageurl']['tmp_name'][$key]);
         if ($check == false) {
             $this->errors[$this->key] [$key] = "le format" . ($key+1). "n'est pas sopporté.";
         };
 
         //Check file size. no more than 500KB
-        if ($this->value['imageurl']['size'][$key] > 500000) {
+        if ($this->value['Imageurl']['size'][$key] > 500000) {
             $this->errors[$this->key] [$key] = "Limage" .($key+1). "est trop grande, moins de 500KB,svp.";
         }
 
