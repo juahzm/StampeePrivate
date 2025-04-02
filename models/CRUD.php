@@ -75,6 +75,31 @@ abstract class CRUD extends \PDO {
     }
 
 
+
+
+//     public function selectIdWhere($value, $selectField){
+//     $sql = "SELECT $selectField FROM $this->table WHERE $this->$externalKey = :$this->externalKey";
+//     $stmt = $this->prepare($sql);
+//     $stmt->bindValue(":$this->primaryKey", $value);
+//     $stmt->execute();
+   
+//         return $stmt;
+//     }
+// }
+
+
+
+    public function selectIdWhere($value) {
+    $sql = "SELECT * FROM $this->table WHERE $this->externalKey = :$this->externalKey";
+    $stmt = $this->prepare($sql);
+    $stmt->bindValue(":$this->externalKey", $value);
+    $stmt->execute();
+   
+        return $stmt->fetchAll();
+    }
+
+   
+
     final public function selectWithJoin($joinTable, $selectField, $externalKey){
         
         $sql = "SELECT $selectField FROM $this->table 
@@ -94,6 +119,8 @@ abstract class CRUD extends \PDO {
             return false;
         }
     }
+
+    
 
 
     final public function update($data, $id){

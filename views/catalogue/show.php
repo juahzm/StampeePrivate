@@ -62,7 +62,7 @@
                 </div>
 
                 <div>
-                    <form action="index.html" method="get">
+                    <form  method="post">
                         <div class="navigation-input-flex">
                             <label hidden for="recherche" id="recherche-label"
                                 >recherche</label
@@ -180,11 +180,11 @@
                     /></a>
                 </div>
 
-                <div>
-                {% if timbre.Imageurl %}
+                <div class="flex-block">
+                {% if timbre.imageprimary %}
                     <img
                         id="mainimagezoom"
-                        src="{{upload}}{{timbre.Imageurl}}"
+                        src="{{upload}}{{timbre.imageprimary}}"
                         alt="julesverne"
                     />
                     {% else %}
@@ -193,22 +193,24 @@
                 </div>
 
                 <div class="fiche-conteneur">
+                   
                     <a href=""
                         ><img
                             class="fiche-conteneur-image"
-                            src=""
+                            src="{{ upload }}{{ timbre.otherImages[0] }}"
                             alt="zoominImg1"
                     /></a>
+                   
                     <a href=""
                         ><img
                             class="fiche-conteneur-image"
-                            src=""
+                            src="{{ upload }}{{ timbre.otherImages[1] }}"
                             alt="zoominImg2"
                     /></a>
                     <a href=""
                         ><img
                             class="fiche-conteneur-image"
-                            src=""
+                            src="{{ upload }}{{ timbre.otherImages[2] }}"
                             alt="zoominImg3"
                     /></a>
                 
@@ -280,27 +282,31 @@
                                 <h4 class="h4">Pays d'origine:</h4>
                                 <p>{{timbre.countryidcountry}}</p>
                             </div>
-
+                            
                             <div class="flex-row lato-regular">
+                            {% if timbre.enchere %}
                                 <h4 class="h4">Date de début:</h4>
-                                <p>Mars 22 2025</p>
+                                <p>{{timbre.enchere.startdateperiod}}</p>
+                                {% endif %}
                             </div>
 
                             <div class="flex-row lato-regular">
+                            {% if timbre.enchere %}
                                 <h4 class="h4">Date de fin:</h4>
-                                <p>Mars 30 2025</p>
+                                <p>{{timbre.enchere.enddateperiod}}</p>
+                                {% endif %}
                             </div>
 
                             <div class="flex-row lato-regular">
                                 <h4 class="h4">Dernière offre:</h4>
-                                <p>phila.jack01</p>
+                                <p></p>
                             </div>
                         </div>
 
                         <div>
                             <div class="flex-row lato-regular">
                                 <h4 class="h4">Quantité de mises:</h4>
-                                <p>111</p>
+                                <p></p>
                             </div>
 
                             <div class="flex-row lato-regular">
@@ -351,7 +357,7 @@
            
 
                 <div class="fiche-bouton-edit">
-                    <a href="{{base}}/timbre/edit?idtimbre={{timbre.idtimbre}}" class="fiche-bouton-blue rosarivo-regular">Edit</a>
+                    <a href="{{base}}/timbre/edit?idtimbre={{timbre.idtimbre}}" class="fiche-bouton-blue rosarivo-regular">Éditez</a>
                 
                 </div>
 
@@ -360,33 +366,61 @@
         </section>
 
         <div class="payment">
-            <div class="flex-row">
+            <div class="flex-column">
+            <div class = "flex-row">
                 <img class="icon" src="{{asset}}/images/clockbf.png" alt="clock" />
-                <p>Enchère en direct: 7j 2:67:08</p>
+            
+                <p>Enchère en direct: </p>
+            </div>
+
                 <div class="flex-row lato-regular">
-                    <h4 class="h4">Prix de base:</h4>
-                    <p>$40 CAD</p>
-                    <h4 class="h4">Offre actuelle:</h4>
-                    <p>$60 CAD</p>
-                    <h4 class="h4">Estimation:</h4>
-                    <p>$111 CAD</p>
+                        {% if timbre.enchere %}
+                                <h4 class="h4">Prix de base:</h4>
+                                <p>$ {{timbre.enchere.priceenchere}} CAD</p>
+                                {% endif %}
+
                 </div>
+                    <!-- <h4 class="h4">Offre actuelle:</h4>
+                    <p>$60 CAD</p> -->
+
+                <div>
+                    <h4 class="h4">Favoris de Stampee: </h4>
+                    <p></p>
+
+                </div>
+
+                <div class = "flex-row">
+                    {% if timbre.enchere %}
+                                <h4 class="h4">Date de début:</h4>
+                                <p>{{timbre.enchere.startdateperiod}}</p>
+                                {% endif %}
+                </div>
+                <div class = "flex-row">
+                    {% if timbre.enchere %}
+                                <h4 class="h4">Date de fin:</h4>
+                                <p>{{timbre.enchere.enddateperiod}}</p>
+                                {% endif %}
+                </div>
+                </div>
+                <div>
             </div>
 
             <div class="flex-row">
-                <a class="fiche-bouton" href="">$70 CAD</a>
-                <a class="fiche-bouton" href="">$75 CAD</a>
-                <a class="fiche-bouton" href="">$85 CAD</a>
+                
 
                 <div class="flex-row">
-                    <form action="" method="post">
-                        <div class="navigation-input-flex">
+                
+                    <form method="post">
+               
+                   
+                
+                         <div class="navigation-input-flex">
                             <label hidden for="Encherir" id="Encherir-label"
                                 >Encherir</label
                             >
                             <input
                                 type="text"
-                                name="Encherir"
+                                name="valeurdemise"
                                 id="Encherir"
                                 placeholder="$ Placer la mise"
                                 class="navigation-recherche"
@@ -394,12 +428,14 @@
                                 aria-labelledby="Encherir-label"
                             />
                         </div>
+                        <div class="button-container">
+                            <input type="submit" value="Enchérir"class="fiche-bouton-blue rosarivo-regular">
+                        </div>
+                   
                     </form>
 
-                    <a class="fiche-bouton-blue rosarivo-regular" href=""
-                        >Enchérir</a
-                    >
-                </div>
+        
+               
                 <div class="flex-row">
                     <h3 class="h3">Options de payment:</h3>
                     <a href=""

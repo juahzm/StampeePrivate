@@ -9,6 +9,8 @@ use App\Models\Image;
 use App\Models\Color;
 use App\Models\Conditions;
 use App\Models\Country;
+use App\Models\Enchere;
+use App\Models\Mise;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -24,45 +26,58 @@ class CatalogueController{
         $image = new Image;
         $selectimg = $image->select();
         
-       
-      
+        $enchere = new Enchere;
+        $selectEnchere = $enchere->select();
+        echo "<pre>";
+        print_r($selectEnchere); 
+        echo "</pre>";
+        
         
         foreach ($select as &$timbreRecord) {
             
-             
-            foreach ($selectimg as $img) {
-
-            //     echo "<pre>";
-            //     print_r($selectimg); 
+            $timbreRecord['encheres'] = [];
+            
+            foreach ($selectEnchere as $enchereRecord) {
+                if ($enchereRecord['timbreidtimbreenchere'] == $timbreRecord['idtimbre']) {
+                    $timbreRecord['encheres'][] = $enchereRecord; // Attach the entire enchere record to the timbre
+                    
+                }
+            }
+            // echo "<pre>";
+            // print_r($timbreRecord['encheres']); 
             // echo "</pre>";
-           
-
+            
+            
+            foreach ($selectimg as $img) {
+                
+                //     echo "<pre>";
+                //     print_r($selectimg); 
+                // echo "</pre>";
+                
+                
                 if ($img['timbreidtimbre'] == $timbreRecord['idtimbre'] && $img['imageprimary'] == 1) {
-                    $timbreRecord['Imageurl'] = $img['Imageurl']; // Set the imageurl field directly in the timbre object
-                     break; 
-        //        echo "<pre>";
-        //        print_r($img['Imageurl']); 
-        //    echo "</pre>";
-
-        //    echo "<pre>";
-        //    print_r($timbreRecord); 
-        //      echo "</pre>";
-        //      echo "<pre>";
-        //      print_r($img['Imageurl']); 
-        //      echo "</pre>";
-           
+                    $timbreRecord['Imageurl'] = $img['Imageurl'];
+                    
+                    
                 }
             }
         }
         
-        //        echo "<pre>";
-        //     print_r($img['timbreidtimbre']); 
-        // echo "</pre>";
-        
-       
-        
         return  View::render('catalogue/index', ['timbres' => $select]);
         
+    }
+    
+    public function store($data =[]){
+        $data = $_POST;
+        echo "<pre>";
+        print_r($data);  
+        echo "</pre>";
+        die(); 
+
+        // if ($insert) {}
+        
+        
+        return View::redirect('user/profil');
     }
     
     

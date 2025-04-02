@@ -214,6 +214,11 @@ img {
     align-items: center;
 }
 
+.flex-block {
+    display: block;
+    text-align: center;
+}
+
 /*Rythme*/
 
 header>* {

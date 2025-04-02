@@ -1,6 +1,7 @@
 .Carte-image {
     width: auto;
-    max-height: 250px;
+    max-height: 200px;
+    border-radius: 10px;
 }
 
 .Carte {

@@ -27,6 +27,8 @@ Route::post('/user/catalogue/show', 'TimbreController@show');
 Route::get('/timbre/edit', 'TimbreController@edit');
 Route::post('/timbre/edit', 'TimbreController@update');
 
+Route::post('/user/catalogue/show', 'CatalogueController@store');
+
 
 
 

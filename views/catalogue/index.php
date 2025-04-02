@@ -211,8 +211,24 @@
                     
                       
                         <small>{{timbre.descriptiontimbre}}</small>
-                            <small><strong>Mar 2025, 2 CAD</strong></small>
-                    
+
+                        {% for enchere in timbre.encheres %}
+                        <div>
+                            <small>Date de début: <strong>{{enchere.startdateperiod}}</strong></small>
+                        </div>
+                        {% endfor %}
+
+                        {% for enchere in timbre.encheres %}
+                        <div>
+                            <small>Date de fin: <strong>{{enchere.enddateperiod}}</strong></small>
+                        </div>
+                        {% endfor %}
+
+                        {% for enchere in timbre.encheres %}
+                        <div>
+                            <small>Prix de base: <strong>$ {{enchere.priceenchere}} CAD</strong></small>
+                        </div>
+                        {% endfor %}
 
                             <a href="your-link-here">
                             <img class="fiche-icon" src="{{asset}}/images/star.png" alt="etoile" />
