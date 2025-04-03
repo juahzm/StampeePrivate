@@ -67,18 +67,6 @@ class CatalogueController{
         
     }
     
-    public function store($data =[]){
-        $data = $_POST;
-        echo "<pre>";
-        print_r($data);  
-        echo "</pre>";
-        die(); 
-
-        // if ($insert) {}
-        
-        
-        return View::redirect('user/profil');
-    }
     
     
     

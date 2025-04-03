@@ -136,8 +136,8 @@ class TimbreController {
                 $enchere = new Enchere;
                 $selectEnchere = $enchere->selectIdWhere($data['idtimbre']);
                 //     echo "<pre>";
-                // print_r($selectEnchere);
-                // echo "</pre>";
+                print_r($selectEnchere);
+                echo "</pre>";
 
                 $timbreData['enchere'] = $selectEnchere[0];
                      echo "<pre>";
@@ -148,10 +148,6 @@ class TimbreController {
                 // Accessing the first item (0-indexed)
                 //The reason we use $selectEnchere[0] is to extract the first record from the results of the query. This is helpful when you know that you expect only one enchere for the given idtimbre. By using $selectEnchere[0], you're extracting the data for the first (and possibly only) enchere related to the current timbre.
 
-
-                
-                
-    
             $primaryImage = null;
             $otherImages = [];
 
@@ -181,6 +177,9 @@ class TimbreController {
                 
                 return View::render('catalogue/show', ['timbre' => $timbreData, 'color' => $select2[0], 
                 'country' => $select3[0], 'condition' => $select4[0]]);
+
+                return View::render('profile/index', ['timbre' => $timbreData]);
+
             } else {
                 return View::render('error', ['msg' => 'le timbre n existe pas']);
             }

@@ -22,12 +22,10 @@ Route::get('/user/catalogue', 'CatalogueController@index');
 Route::post('/user/catalogue', 'CatalogueController@index');
 
 Route::get('/user/catalogue/show', 'TimbreController@show');
-Route::post('/user/catalogue/show', 'TimbreController@show');
+Route::post('/user/catalogue/show', 'ProfilController@store');
 
 Route::get('/timbre/edit', 'TimbreController@edit');
 Route::post('/timbre/edit', 'TimbreController@update');
-
-Route::post('/user/catalogue/show', 'CatalogueController@store');
 
 
 

@@ -410,7 +410,7 @@
 
                 <div class="flex-row">
                 
-                    <form method="post">
+                    <form action="" method="post">
                
                    
                 
@@ -418,6 +418,11 @@
                             <label hidden for="Encherir" id="Encherir-label"
                                 >Encherir</label
                             >
+                           
+                            <input type="hidden" name="enchereidenchere" value="{{ timbre.enchere.idenchere }}">
+                            <input type="hidden" name="useriduserenchere" value=" {{timbre.useriduser}}">
+
+                            
                             <input
                                 type="text"
                                 name="valeurdemise"
