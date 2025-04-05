@@ -44,12 +44,17 @@ class TimbreController {
         $validator->field('datecreationtimbre', $data['datecreationtimbre'], 'la date')->required();
         $validator->field('tiragetimbre', $data['tiragetimbre'], 'la tirage')->required()->number();
         
-        if ($_FILES['Imageurl']['size'] > 0) {
+
+        if (!empty($_FILES['Imageurl']['name'])) {
             foreach ($_FILES['Imageurl']['name'] as $key => $fileName) {
-                $validator->field('Imageurl', $_FILES, 'Limage')->image($key);
+                $size = $_FILES['Imageurl']['size'][$key];
+                if ($size > 0) {
+                    $validator->field("Imageurl[$key]", $_FILES, "Image $key")->image($key);
+                }
             }
         }
-        
+    
+
         if ($validator->isSuccess()) {
             
             $timbre = new Timbre;
@@ -136,13 +141,13 @@ class TimbreController {
                 $enchere = new Enchere;
                 $selectEnchere = $enchere->selectIdWhere($data['idtimbre']);
                 //     echo "<pre>";
-                print_r($selectEnchere);
-                echo "</pre>";
+                // print_r($selectEnchere);
+                // echo "</pre>";
 
                 $timbreData['enchere'] = $selectEnchere[0];
-                     echo "<pre>";
-                print_r( $timbreData['enchere']);
-                echo "</pre>";
+                //      echo "<pre>";
+                // print_r( $timbreData['enchere']);
+                // echo "</pre>";
               
 
                 // Accessing the first item (0-indexed)
@@ -188,15 +193,20 @@ class TimbreController {
     }
 
     public function edit($data = []) {
+       
         
         if (isset($data['idtimbre']) && $data['idtimbre'] != null) {
             $timbre = new Timbre;
+           
             
             if ($selectId = $timbre->selectId($data['idtimbre'])) {
                 $timbreData = $selectId[0];
+                // print_r($timbreData);
+                // die();
                 
                 $country = new Country;
                 $selectall = $country->select();
+                // print_r($selectall);
                 $condition = new Conditions;
                 $conditionselectall = $condition->select();
                 $color = new Color;
@@ -210,7 +220,6 @@ class TimbreController {
 
     public function update($data = [], $get = []) {
         
-        $data['useriduser'] = $_SESSION['id_user'];
         
         $validator = new Validator;
         $validator->field('nametimbre', $data['nametimbre'], 'le nom du timbre')->required()->max(25);
@@ -218,27 +227,82 @@ class TimbreController {
         $validator->field('datecreationtimbre', $data['datecreationtimbre'], 'la date')->required();
         $validator->field('tiragetimbre', $data['tiragetimbre'], 'la tirage')->required()->number();
         
-        if ($_FILES['Imageurl']['size'] > 0) {
-            foreach ($_FILES['Imageurl']['name'] as $key => $fileName) {
-                $validator->field('Imageurl', $_FILES, 'Limage')->image($key);
-            }
-        }
         
-        if ($validator->isSuccess()) {
-            
-            $timbre = new Timbre;
-            $update = $timbre->update($data, $get['idtimbre']);
-            
-            if ($update) {
-                return view::redirect('user/catalogue');
-            } else {
-                return View::render('error');
+        if (!empty($_FILES['Imageurl']['name'])) {
+            foreach ($_FILES['Imageurl']['name'] as $key => $fileName) {
+                $size = $_FILES['Imageurl']['size'][$key];
+                if ($size > 0) {
+                    $validator->field("Imageurl[$key]", $_FILES, "Image $key")->image($key);
+                }
             }
-        } else {
-            $errors = $validator->getErrors();
-            return View::render('timbre/edit', ['errors' => $errors, 'timbre' => $data]);
         }
+
+
+        if ($validator->isSuccess()) {
+                 // Step 1: Delete existing images
+        $img = new Image;
+        $imgselect = $img->selectIdWhere($data['idtimbre']); // Get existing images for this timbre
+        
+        foreach ($imgselect as $image) {
+            $id = $image['idimage'];
+            $img->delete($id);  // Delete image
+        }
+
+        // Step 2: Upload new images
+        $imageobj = new Image;
+        $images = $_FILES['Imageurl'];
+        $primaryImageSet = false;
+
+        $primaryImageIndex = isset($_POST['imageprimary']) ? key($_POST['imageprimary']) : null;
+
+        // Loop through the uploaded images and move them to the server
+        for ($index = 0; $index < count($images['name']); $index++) {
+            $image = $images['name'][$index];
+            $folderupload = __DIR__ . '/../public/uploads/';
+            $targetfile = $folderupload . basename($image); // target location
+            $moved = move_uploaded_file($images['tmp_name'][$index], $targetfile); // Move the file to the target location
+
+            if ($moved) {
+
+                $data['timbreidtimbre'] = $data['idtimbre'];
+                $data['Imageurl'] = basename($image); // Store image filename in data
+                
+                // Set primary image flag for the first image
+                if (!$primaryImageSet) {
+                    $data['imageprimary'] = 1;
+                    $primaryImageSet = true;
+                } else {
+                    $data['imageprimary'] = 0;
+                }
+
+                // Insert image record into the database
+                $insertimage = $imageobj->insert($data);
+                if (!$insertimage) {
+                    // Handle any insert failures here (e.g., roll back)
+                    return View::render('error');
+                }
+            }
+        }
+
+        // Step 3: Update timbre information
+        $timbre = new Timbre;
+        $update = $timbre->update($data, $get['idtimbre']);
+
+        if ($update) {
+            return View::redirect('user/catalogue');
+        } else {
+            return View::render('error');
+        }
+
+    } else {
+        $errors = $validator->getErrors();
+        return View::render('timbre/edit', ['errors' => $errors, 'timbre' => $data, 'insertimage' => $data]);
     }
+}
+
+           
+
+    
 }
 
 

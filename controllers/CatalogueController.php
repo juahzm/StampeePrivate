@@ -28,9 +28,9 @@ class CatalogueController{
         
         $enchere = new Enchere;
         $selectEnchere = $enchere->select();
-        echo "<pre>";
-        print_r($selectEnchere); 
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($selectEnchere); 
+        // echo "</pre>";
         
         
         foreach ($select as &$timbreRecord) {

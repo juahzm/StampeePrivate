@@ -185,7 +185,7 @@
                     <img
                         id="mainimagezoom"
                         src="{{upload}}{{timbre.imageprimary}}"
-                        alt="julesverne"
+                        alt="PrimaryImage"
                     />
                     {% else %}
                     <p>pas disponible</p>
@@ -198,20 +198,20 @@
                         ><img
                             class="fiche-conteneur-image"
                             src="{{ upload }}{{ timbre.otherImages[0] }}"
-                            alt="zoominImg1"
+                            alt="SecondaryImage1"
                     /></a>
                    
                     <a href=""
                         ><img
                             class="fiche-conteneur-image"
                             src="{{ upload }}{{ timbre.otherImages[1] }}"
-                            alt="zoominImg2"
+                            alt="SecondaryImage2"
                     /></a>
                     <a href=""
                         ><img
                             class="fiche-conteneur-image"
                             src="{{ upload }}{{ timbre.otherImages[2] }}"
-                            alt="zoominImg3"
+                            alt="SecondaryImage3"
                     /></a>
                 
                 </div>
@@ -534,6 +534,8 @@
             </div>
         </div>
 
+</div>
+
 
         <div class="carte_info"></div>
 
@@ -695,5 +697,7 @@
                 </article>
             </div>
         </div>
+
+</div>
 
         {{ include('layouts/footer.php')}}

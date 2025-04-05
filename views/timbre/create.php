@@ -106,36 +106,36 @@
 <div class="timbrecreatecontainer flex-column">
     <label class="select_area_img">Sélectionner l'image principale
         <input type="file" name="Imageurl[]" id="imageurl1" required>
-        {% for error in errors.Imageurl %}
-            <span class="errors">{{ error.Imageurl }}</span>
-        {% endfor %}
+        {% if errors['Imageurl[0]'] %}
+            <span class="errors">{{ errors['Imageurl[0]']}}</span>
+        {% endif %}
     </label>
 </div>
 
 <div class="timbrecreatecontainer flex-column">
     <label class="select_area_img">Sélectionner une autre image
         <input type="file" name="Imageurl[]" id="imageurl2">
-        {% for error in errors.Imageurl %}
-            <span class="errors">{{ error }}</span>
-        {% endfor %}
+        {% if errors['Imageurl[1]'] %}
+            <span class="errors">{{ errors['Imageurl[1]'] }}</span>
+        {% endif %}
     </label>
 </div>
 
 <div class="timbrecreatecontainer flex-column">
     <label class="select_area_img">Sélectionner une autre image
-        <input type="file" name="Imageurl[]" id="imageurl2">
-        {% for error in errors.Imageurl %}
-            <span class="errors">{{ error }}</span>
-        {% endfor %}
+        <input type="file" name="Imageurl[]" id="imageurl3">
+        {% if errors['Imageurl[2]'] %}
+            <span class="errors">{{ errors['Imageurl[2]'] }}</span>
+            {% endif %}
     </label>
 </div>
 
 <div class=" timbrecreatecontainer flex-column">
     <label class="select_area_img">Sélectionner une autre image
-        <input type="file" name="Imageurl[]" id="imageurl2">
-        {% for error in errors.Imageurl %}
-            <span class="errors">{{ error }}</span>
-        {% endfor %}
+        <input type="file" name="Imageurl[]" id="imageurl4">
+        {% if errors['Imageurl[3]'] %}
+            <span class="errors">{{ errors['Imageurl[2]']}}</span>
+            {% endif %}
     </label>
 </div>
 

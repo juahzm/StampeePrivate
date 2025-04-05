@@ -152,6 +152,23 @@ abstract class CRUD extends \PDO {
     }
 
     
+    final public function delete($value){
+        if($this->selectId($value)){
+            $sql = "DELETE FROM $this->table WHERE $this->primaryKey = :$this->primaryKey";
+            $stmt = $this->prepare($sql);
+            $stmt->bindValue(":$this->primaryKey", $value);
+            if($stmt->execute()){
+                return true;
+            }else{
+                return false;
+            } 
+        }else{
+            return false;
+        }
+    }
+    
+
+    
 
 }
 

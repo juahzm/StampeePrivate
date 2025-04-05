@@ -20,28 +20,28 @@
 
           
             <label>Le nom du timbre
-                <input type="text" name="nametimbre" value="{{timbre[0].nametimbre}}" >
+                <input type="text" name="nametimbre" value="{{timbre.nametimbre}}" >
             </label>
             <span class="errors"> {{errors.nametimbre}}</span>
             <label>La description du  timbre
-                <input class="input_description" type="text" name="descriptiontimbre" value="{{timbre[0].descriptiontimbre}}" >
+                <input class="input_description" type="text" name="descriptiontimbre" value="{{timbre.descriptiontimbre}}" >
             </label>
             <span class="errors"> {{errors.descriptiontimbre}}</span>
             <label>Son Valeur historique
-                <input class="input_description"  type="text" name="historyvaluetimbre" value="{{timbre[0].historyvaluetimbre}}" >
+                <input class="input_description"  type="text" name="historyvaluetimbre" value="{{timbre.historyvaluetimbre}}" >
             </label>
             <span class="errors"> {{errors.historyvaluetimbre}}</span>
             <label>La date de création du timbre
-                <input type="date" name="datecreationtimbre" value="{{timbre[0].datecreationtimbre}}" >
+                <input type="date" name="datecreationtimbre" value="{{timbre.datecreationtimbre}}" >
             </label>
             <span class="errors" > {{errors.datecreationtimbre}}</span>
             <label>Ses dimensions wxh(mm)
-                <input type="text" name="dimensiontimbre" value="{{timbre[0].dimensiontimbre}}" >
+                <input type="text" name="dimensiontimbre" value="{{timbre.dimensiontimbre}}" >
             </label>
             <span class="errors" > {{errors.dimensiontimbre}}</span>
 
             <label>Tirage
-                <input type="number" name="tiragetimbre" value="{{timbre[0].tiragetimbre}}" >
+                <input type="number" name="tiragetimbre" value="{{timbre.tiragetimbre}}" >
             </label>
             <span class="errors" > {{errors.tiragetimbre}}</span>
 
@@ -77,7 +77,7 @@
             <label class="select_area">Pays
             <select name="countryidcountry">
                 {% for country in countries %}
-            <option value="{{ country.idcountry }}" {% if country.idcountry == timbre[0].countryidcountry %} selected {% endif %}>
+            <option value="{{ country.idcountry }}" {% if country.idcountry == timbre.countryidcountry %} selected {% endif %}>
                 {{ country.namecountry }}
                 </option>
             {% endfor %}
@@ -88,7 +88,7 @@
             <label class="select_area">Condition
                 <select name="conditionsidconditions">
                 {% for condition in conditions %}
-                <option value="{{condition.idcondition}}"{% if condition.idcondition == timbre[0].conditionsidconditions %} selected {% endif %}>{{ condition.namecondition}}</option>
+                <option value="{{condition.idcondition}}"{% if condition.idcondition == timbre.conditionsidconditions %} selected {% endif %}>{{ condition.namecondition}}</option>
                 {% endfor %}
                 </select>
                </label>
@@ -98,46 +98,47 @@
             <label class="select_area" >Couleur
                 <select name="coloridcolor">
                 {% for color in colors %}
-                <option value="{{color.idcolor}}"{% if color.idcolor == timbre[0].coloridcolor %} selected {% endif %}>{{ color.namecolor}}</option>
+                <option value="{{color.idcolor}}"{% if color.idcolor == timbre.coloridcolor %} selected {% endif %}>{{ color.namecolor}}</option>
                 {% endfor %}
                 </select>
                 
               </label>
 </div>
 
+
 <div class="timbrecreatecontainer flex-column">
     <label class="select_area_img">Sélectionner l'image principale
         <input type="file" name="Imageurl[]" id="imageurl1" required>
-        {% for error in errors.Imageurl %}
-            <span class="errors">{{ error.Imageurl }}</span>
-        {% endfor %}
+        {% if errors['Imageurl[0]'] %}
+            <span class="errors">{{ errors['Imageurl[0]']}}</span>
+        {% endif %}
     </label>
 </div>
 
 <div class="timbrecreatecontainer flex-column">
     <label class="select_area_img">Sélectionner une autre image
         <input type="file" name="Imageurl[]" id="imageurl2">
-        {% for error in errors.Imageurl %}
-            <span class="errors">{{ error }}</span>
-        {% endfor %}
+        {% if errors['Imageurl[1]'] %}
+            <span class="errors">{{ errors['Imageurl[1]'] }}</span>
+        {% endif %}
     </label>
 </div>
 
 <div class="timbrecreatecontainer flex-column">
     <label class="select_area_img">Sélectionner une autre image
-        <input type="file" name="Imageurl[]" id="imageurl2">
-        {% for error in errors.Imageurl %}
-            <span class="errors">{{ error }}</span>
-        {% endfor %}
+        <input type="file" name="Imageurl[]" id="imageurl3">
+        {% if errors['Imageurl[2]'] %}
+            <span class="errors">{{ errors['Imageurl[2]'] }}</span>
+            {% endif %}
     </label>
 </div>
 
 <div class=" timbrecreatecontainer flex-column">
     <label class="select_area_img">Sélectionner une autre image
-        <input type="file" name="Imageurl[]" id="imageurl2">
-        {% for error in errors.Imageurl %}
-            <span class="errors">{{ error }}</span>
-        {% endfor %}
+        <input type="file" name="Imageurl[]" id="imageurl4">
+        {% if errors['Imageurl[3]'] %}
+            <span class="errors">{{ errors['Imageurl[2]']}}</span>
+            {% endif %}
     </label>
 </div>
 

@@ -91,31 +91,28 @@ class Validator {
         
        
         
-         if(empty($this->value['Imageurl']['tmp_name'][$key])){
-            $this->errors[$this->key] [$key] = "Aucun fiche téleversé" . ($key +1);
+        if (empty($this->value['Imageurl']['tmp_name'][$key])) {
+            $this->errors["Imageurl[$key]"] = "Aucun fichier téléversé " . ($key + 1);
             return $this;
-
-         }
+        }
+        
 
         $target_file = $_SERVER["DOCUMENT_ROOT"] . UPLOAD . basename($this->value['Imageurl']['name'][$key]);
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        // Check if its an image
+
         $check = getimagesize($this->value['Imageurl']['tmp_name'][$key]);
+
         if ($check == false) {
-            $this->errors[$this->key] [$key] = "le format" . ($key+1). "n'est pas sopporté.";
-        };
-
-        //Check file size. no more than 500KB
-        if ($this->value['Imageurl']['size'][$key] > 500000) {
-            $this->errors[$this->key] [$key] = "Limage" .($key+1). "est trop grande, moins de 500KB,svp.";
+            $this->errors["Imageurl[$key]"] = "Le fichier " . ($key + 1) . " n'est pas une image valide.";
         }
-
-        // Allow just img formats
-
-        if (!in_array($imageFileType, ['jpg', 'jpeg', 'png'] )) {
-            $this->errors[$this->key][$key] = "téléversez une image en format JPG, JPEG, ou PNG, svp";
+        if ($this->value['Imageurl']['size'][$key] > 1000000) {
+            $this->errors["Imageurl[$key]"] = "L'image " . ($key + 1) . " est trop grande, moins de 1MB svp.";
         }
+        if (!in_array($imageFileType, ['jpg', 'jpeg', 'png'])) {
+            $this->errors["Imageurl[$key]"] = "Téléversez une image au format JPG, JPEG ou PNG, svp.";
+        }
+        
 
         return $this;
 
