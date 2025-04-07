@@ -119,97 +119,56 @@ class TimbreController
     public function show($data = [])
     {
 
-        // echo "<pre>";
-        // print_r($data);
-        // echo "</pre>";
-
         $timbre = new Timbre;
         $image = new Image;
         $enchere = new Enchere;
-        $mise = new Mise;
-        $selectEverythingPerId = $mise->selectWithJoinAll3('enchere', 'enchereidenchere', 'idenchere',  'timbre', 'timbreidtimbreenchere',  'idtimbre',  'image', 'timbreidtimbre');
 
+        $dataAll = $timbre->selectWithJoinAllId($data['idtimbre'], 'enchere', 'timbreidtimbreenchere', 'image', 'timbreidtimbre');
         // echo "<pre>";
-        // print_r($selectEverythingPerId);
+        // print_r($dataAll);
         // echo "</pre>";
-
-        $timbres = [];
-        foreach ($selectEverythingPerId as $row) {
-            $idtimbre = $row['idtimbre'];
+        // die();
 
 
-            if (!isset($timbres[$idtimbre])) {
-                $timbres[$idtimbre] = [
-                    'idtimbre' => $row['idtimbre'],
-                    'nametimbre' => $row['nametimbre'],
-                    'datecreationtimbre' => $row['datecreationtimbre'],
-                    'historyvaluetimbre' => $row['historyvaluetimbre'],
-                    'descriptiontimbre' => $row['descriptiontimbre'],
-                    'conditionsidconditions' => $row['conditionsidconditions'],
-                    'dimensiontimbre' => $row['dimensiontimbre'],
-                    'coloridcolor' => $row['coloridcolor'],
-                    'useriduser' => $row['useriduser'],
-                    'countryidcountry' => $row['countryidcountry'],
-                    'certifietimbre' => $row['certifietimbre'] == 1 ? 'Oui' : 'Non',
-                    'enchere' => [],
-                    'imageprimary' => null,
-                    'otherImages' => []
-                ];
-            }
+        $timbreData = $dataAll[0];
+        echo "<pre>";
+        print_r($timbreData);
+        echo "</pre>";
 
-            $timbres[$idtimbre]['enchere'][] = [
+        $color = new Color;
+        $select2 = $color->selectId($timbreData['coloridcolor']);
+        $timbreData['coloridcolor'] = $select2[0]['namecolor'];
+        echo "<pre>";
+        print_r($select2);
+        echo "</pre>";
 
-                'idenchere' => $row['idenchere'],
-                'datedemise' => $row['datedemise'],
-                'valeurdemise' => $row['valeurdemise'],
-                'priceenchere' => $row['priceenchere'],
-                'startdateperiod' => $row['startdateperiod'],
-                'enddateperiod' => $row['enddateperiod'],
-            ];
+        $country = new Country;
+        $select3 = $country->selectId($timbreData['countryidcountry']);
+        $timbreData['countryidcountry'] = $select3[0]['namecountry'];
+
+        $condition = new Conditions;
+        $select4 = $condition->selectId($timbreData['conditionsidconditions']);
+        $timbreData['conditionsidconditions'] = $select4[0]['namecondition'];
+
+        $timbreData['certifietimbre'] = $timbreData['certifietimbre'] === 1 ? 'Oui' : 'Non';
 
 
+        $primaryImage = '';
+        $otherImages = [];
 
-            if ($row['imageprimary'] == 1) {
-                $timbres[$idtimbre]['imageprimary'] = $row['Imageurl'];
+        foreach ($dataAll as $imageData) {
+            if ($imageData['imageprimary'] == 1) {
+                $primaryImage = $imageData['Imageurl'];
             } else {
-                $timbres[$idtimbre]['otherImages'][] = $row['Imageurl'];
+                $otherImages[] = $imageData['Imageurl'];
             }
         }
+        $otherImages = array_merge($otherImages);
+        echo "<pre>";
+        print_r($otherImages);
+        echo "</pre>";
 
-        foreach ($timbres as $idtimbre => &$timbreData) {
-            $country = new Country;
-
-            $select3 = $country->selectId($timbreData['countryidcountry']);
-            $timbreData['countryidcountry'] = $select3[0]['namecountry'];
-
-            $color = new Color;
-            $select2 = $color->selectId($timbreData['coloridcolor']);
-            $timbreData['coloridcolor'] = $select2[0]['namecolor'];
-
-            $condition = new Conditions;
-            $select4 = $condition->selectId($timbreData['conditionsidconditions']);
-            $timbreData['conditionsidconditions'] = $select4[0]['namecondition'];
-        }
-
-
-        if (isset($data['idtimbre'])) {
-
-            $filteredTimbre = $timbres[$data['idtimbre']] ?? null;
-
-
-            if ($filteredTimbre) {
-                return View::render('catalogue/show', ['timbre' => $filteredTimbre]);
-            } else {
-                return View::render('error', ['msg' => 'Timbre introuvable']);
-            }
-        }
-
-
-        // return View::render('catalogue/show', ['timbre' => $selectEverythingPerId]);
-        // } else {
-        //     return View::render('error', ['msg' => 'Timbre introuvable']);
-        // }
-
+        return View::render('catalogue/show', ['timbre' => $timbreData, 'images' => $dataAll, 'primaryImage' => $primaryImage, 'otherImages' => $otherImages]);
     }
 
 
@@ -327,9 +286,9 @@ class TimbreController
 }
 
 
-    
-    
-    // echo "<pre>";
-    // print_r($insertimage);  
-    // echo "</pre>";
-    // die();     
+
+
+// echo "<pre>";
+// print_r($insertimage);  
+// echo "</pre>";
+// die();     

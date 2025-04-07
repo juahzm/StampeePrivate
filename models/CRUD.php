@@ -1,19 +1,24 @@
 <?php
+
 namespace App\Models;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-abstract class CRUD extends \PDO {
-    final public function __construct(){
+abstract class CRUD extends \PDO
+{
+    final public function __construct()
+    {
         parent::__construct('mysql:host=localhost; dbname=stampee; port=3306; charset=utf8', 'root', '');
     }
 
-    final public function getLastInsertId() {
+    final public function getLastInsertId()
+    {
         return $this->lastInsertId();
     }
 
-    final public function insert($data){
+    final public function insert($data)
+    {
         if (!is_array($data) || empty($data)) {
             return false;
         }
@@ -23,53 +28,54 @@ abstract class CRUD extends \PDO {
         $data = array_intersect_key($data, $data_keys);
 
         $fieldName = implode(', ', array_keys($data));
-        $fieldValue = ":".implode(', :', array_keys($data));
-        $sql="INSERT INTO $this->table ($fieldName) VALUES ($fieldValue);";
-        
+        $fieldValue = ":" . implode(', :', array_keys($data));
+        $sql = "INSERT INTO $this->table ($fieldName) VALUES ($fieldValue);";
+
         $stmt = $this->prepare($sql);
-        foreach($data as $key=>$value){
+        foreach ($data as $key => $value) {
             $stmt->bindValue(":$key", $value);
         }
-        if($stmt->execute()){
+        if ($stmt->execute()) {
             return $this->lastInsertId();
-        }else{
+        } else {
             return false;
         }
-  
     }
 
-    public function unique($field, $value){
+    public function unique($field, $value)
+    {
         $sql = "SELECT * FROM $this->table WHERE $field = :$field";
         $stmt = $this->prepare($sql);
         $stmt->bindValue(":$field", $value);
         $stmt->execute();
         $count = $stmt->rowCount();
-        if($count==1){
+        if ($count == 1) {
             return $stmt->fetch();
-        }else{
+        } else {
             return false;
         }
-
     }
 
-    final public function select($field = null) {
-        if($field == null){
+    final public function select($field = null)
+    {
+        if ($field == null) {
             $field = $this->primaryKey;
         }
         $sql = "SELECT * FROM $this->table";
-        $stmt =$this->query($sql);
+        $stmt = $this->query($sql);
         return $stmt->fetchAll();
     }
 
-    final public function selectId($value){
+    final public function selectId($value)
+    {
         $sql = "SELECT * FROM $this->table WHERE $this->primaryKey = :$this->primaryKey";
         $stmt = $this->prepare($sql);
         $stmt->bindValue(":$this->primaryKey", $value);
         $stmt->execute();
         $count = $stmt->rowCount();
-        if($count == 1){
+        if ($count == 1) {
             return $stmt->fetchAll();
-        }else{
+        } else {
             return false;
         }
     }
@@ -77,24 +83,40 @@ abstract class CRUD extends \PDO {
 
 
 
-//     public function selectIdWhere($value, $selectField){
-//     $sql = "SELECT $selectField FROM $this->table WHERE $this->$externalKey = :$this->externalKey";
-//     $stmt = $this->prepare($sql);
-//     $stmt->bindValue(":$this->primaryKey", $value);
-//     $stmt->execute();
-   
-//         return $stmt;
-//     }
-// }
+    //     public function selectIdWhere($value, $selectField){
+    //     $sql = "SELECT $selectField FROM $this->table WHERE $this->$externalKey = :$this->externalKey";
+    //     $stmt = $this->prepare($sql);
+    //     $stmt->bindValue(":$this->primaryKey", $value);
+    //     $stmt->execute();
+
+    //         return $stmt;
+    //     }
+    // }
 
 
 
-    public function selectIdWhere($value) {
-    $sql = "SELECT * FROM $this->table WHERE $this->externalKey = :$this->externalKey";
-    $stmt = $this->prepare($sql);
-    $stmt->bindValue(":$this->externalKey", $value);
-    $stmt->execute();
-   
+    public function selectIdWhere($value)
+    {
+        $sql = "SELECT * FROM $this->table WHERE $this->externalKey = :$this->externalKey";
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(":$this->externalKey", $value);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+
+    final public function selectWithJoinAllId($value, $jointable, $externalKey,  $jointable2, $externalKey2)
+    {
+        $sql = "SELECT * FROM $this->table 
+                INNER JOIN $jointable ON $jointable.$externalKey = $this->table.$this->primaryKey
+                INNER JOIN $jointable2 ON $jointable2.$externalKey2 = $this->table.$this->primaryKey
+                WHERE $this->table.$this->primaryKey = :$this->primaryKey";
+
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(":$this->primaryKey", $value);
+        $stmt->execute();
+
         return $stmt->fetchAll();
     }
 
@@ -103,25 +125,25 @@ abstract class CRUD extends \PDO {
     //     $stmt = $this->prepare($sql);
     //     $stmt->bindValue(":$this->externalKey", $value);
     //     $stmt->execute();
-       
+
     //         return $stmt->fetchAll();
     //     }
 
-   
+
 
     // final public function selectWithJoin($joinTable, $selectField, $externalKey){
-        
+
     //     $sql = "SELECT $selectField FROM $this->table 
     //             INNER JOIN $joinTable ON $this->table.$this->primaryKey = $joinTable.$externalKey
     //             WHERE $joinTable.$externalKey = $this->table.$this->primaryKey";
-    
-       
+
+
     //     $stmt = $this->prepare($sql);
-    
+
     //     $stmt->execute();
-    
+
     //     $count = $stmt->rowCount();
-    
+
     //     if ($count >= 1) {
     //         return $stmt->fetch();
     //     } else {
@@ -129,16 +151,16 @@ abstract class CRUD extends \PDO {
     //     }
     // }
 
-   
+
     // final public function selectWithJoin($value, $joinTable){
-        
+
     //     $sql = "SELECT FROM $this->table 
     //             INNER JOIN $joinTable ON $this->externalKey = = :$this->externalKey";
-    
+
     //         $stmt = $this->prepare($sql);
     //         $stmt->bindValue(":$this->externalKey", $value);
     //         $stmt->execute();
-   
+
     //     return $stmt->fetchAll();
     // }
 
@@ -146,99 +168,112 @@ abstract class CRUD extends \PDO {
     // final public function selectWithJoinAll($joinTable, $externalKey, $primaryKey) {
     //     $sql = "SELECT * FROM $this->table 
     //             INNER JOIN $joinTable ON $this->table.$externalKey = $joinTable.$primaryKey";
-    
+
     //     $stmt = $this->prepare($sql);
     //     $stmt->execute();
-    
+
     //     return $stmt->fetchAll();
     // }
 
-//trois tables
-    final public function selectWithJoinAll2($joinTable, $joinTable2,  $externalKey, $primaryKey, $externalKey2) {
+    //trois tables
+    final public function selectWithJoinAll2($joinTable, $joinTable2,  $externalKey, $primaryKey, $externalKey2)
+    {
         $sql = "SELECT * FROM $this->table 
                 INNER JOIN $joinTable ON $this->table.$externalKey = $joinTable.$primaryKey
                 INNER JOIN $joinTable2 ON $joinTable2.$externalKey2 = $joinTable.$primaryKey
                 WHERE $joinTable2.imageprimary = 1";
-    
+
         $stmt = $this->prepare($sql);
         $stmt->execute();
-    
+
         return $stmt->fetchAll();
     }
 
     //4tables
 
-    final public function selectWithJoinAll3($jointable, $externalKey, $primaryKey1,  $jointable2, $externalKey2,  $primaryKey2,  $jointable3, $externalKey3) {
+    final public function selectWithJoinAll3($jointable, $externalKey, $primaryKey1,  $jointable2, $externalKey2,  $primaryKey2,  $jointable3, $externalKey3)
+    {
         $sql = "SELECT * FROM $this->table 
                 INNER JOIN $jointable ON $this->table.$externalKey = $jointable.$primaryKey1
                 INNER JOIN $jointable2 ON $jointable.$externalKey2 = $jointable2.$primaryKey2
                 INNER JOIN $jointable3 ON $jointable3.$externalKey3 = $jointable2.$primaryKey2";
 
-            $stmt = $this->prepare($sql);
-            $stmt->execute();
+        $stmt = $this->prepare($sql);
+        $stmt->execute();
 
-            return $stmt->fetchAll();
+        return $stmt->fetchAll();
 
-// final public function selectWithJoinAll3('enchere', 'enchereidenchere', idenchere,  'timbre', 'timbreditimbreenchere',  'idtimbre',  'image', 'timbreidtimbre') {
-//     $sql = "SELECT * FROM $this->table 
-//             INNER JOIN 'enchere' ON $this->table.'enchereidenchere' = $enchere.'idenchere'
-//             INNER JOIN ''timbre'' ON $'enchere.'timbreditimbreenchere' = 'timbre'.'idtimbre'
-//             INNER JOIN 'image' ON ''image.'timbreidtimbre' = $timbre.$primaryKey";
-    
+        // final public function selectWithJoinAll3('enchere', 'enchereidenchere', idenchere,  'timbre', 'timbreditimbreenchere',  'idtimbre',  'image', 'timbreidtimbre') {
+        //     $sql = "SELECT * FROM $this->table 
+        //             INNER JOIN 'enchere' ON $this->table.'enchereidenchere' = $enchere.'idenchere'
+        //             INNER JOIN ''timbre'' ON $'enchere.'timbreditimbreenchere' = 'timbre'.'idtimbre'
+        //             INNER JOIN 'image' ON ''image.'timbreidtimbre' = $timbre.$primaryKey";
+
 
     }
 
 
 
-    
 
 
-    final public function update($data, $id){
-        if($this->selectId($id)){
+
+    final public function update($data, $id)
+    {
+        if ($this->selectId($id)) {
             $data_keys = array_fill_keys($this->fillable, '');
             $data = array_intersect_key($data, $data_keys);
 
             $fieldName = null;
-            foreach($data as $key=>$value){
+            foreach ($data as $key => $value) {
                 $fieldName .= "$key = :$key, ";
             }
             $fieldName = rtrim($fieldName, ', ');
             $sql = "UPDATE $this->table SET $fieldName WHERE $this->primaryKey = :$this->primaryKey";
-            
+
             $data[$this->primaryKey] = $id;
-        
+
             $stmt = $this->prepare($sql);
-            foreach($data as $key=>$value){
+            foreach ($data as $key => $value) {
                 $stmt->bindValue(":$key", $value);
             }
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }
 
-    
-    final public function delete($value){
-        if($this->selectId($value)){
+
+    final public function delete($value)
+    {
+        if ($this->selectId($value)) {
             $sql = "DELETE FROM $this->table WHERE $this->primaryKey = :$this->primaryKey";
             $stmt = $this->prepare($sql);
             $stmt->bindValue(":$this->primaryKey", $value);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 return true;
-            }else{
+            } else {
                 return false;
-            } 
-        }else{
+            }
+        } else {
             return false;
         }
     }
-    
 
-    
 
+    final public function selectIdorder($value, $field, $order = 'DESC')
+    {
+        $sql = "SELECT * FROM $this->table 
+         WHERE $this->externalKey1 = :$this->externalKey1
+        ORDER BY $field $order";
+
+        $stmt = $this->prepare($sql);
+        $stmt->bindValue(":$this->externalKey1", $value);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }
-

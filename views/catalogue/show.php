@@ -156,50 +156,51 @@
                         src="{{asset}}/images/maxpale.png"
                         alt="max" /></a>
             </div>
-
             <div class="flex-block">
-                {% if timbre.imageprimary %}
+                {% if primaryImage %}
                 <img
                     id="mainimagezoom"
-                    src="{{upload}}{{timbre.imageprimary}}"
+                    src="{{ upload }}{{ primaryImage }}"
                     alt="PrimaryImage" />
                 {% else %}
-                <p>pas disponible</p>
+                <p>Pas disponible</p>
                 {% endif %}
             </div>
 
             <div class="fiche-conteneur">
-
+                {% if otherImages is not empty %}
+                {% for image in otherImages %}
                 <a href=""><img
                         class="fiche-conteneur-image"
-                        src="{{ upload }}{{ timbre.otherImages[0] }}"
-                        alt="SecondaryImage1" /></a>
-
-                <a href=""><img
-                        class="fiche-conteneur-image"
-                        src="{{ upload }}{{ timbre.otherImages[1] }}"
-                        alt="SecondaryImage2" /></a>
-                <a href=""><img
-                        class="fiche-conteneur-image"
-                        src="{{ upload }}{{ timbre.otherImages[2] }}"
-                        alt="SecondaryImage3" /></a>
-
+                        src="{{ upload }}{{ image }}"
+                        alt="SecondaryImage{{ loop.index }}" /></a>
+                {% endfor %}
+                {% else %}
+                <p>No images available</p>
+                {% endif %}
             </div>
 
-            <div class="fiche-conteneur">
-                <a href=""><img
-                        class="icon"
-                        src="{{asset}}/images/enveloppe.png"
-                        alt="enveloppe" /></a>
-                <a href=""><img
-                        class="icon"
-                        src="{{asset}}/images/Partageiconbp.png"
-                        alt="partager" /></a>
-                <a href=""><img
-                        class="icon"
-                        src="{{asset}}/images/star.png"
-                        alt="Favorites" /></a>
-            </div>
+
+
+
+
+
+        </div>
+
+        <div class="fiche-conteneur">
+            <a href=""><img
+                    class="icon"
+                    src="{{asset}}/images/enveloppe.png"
+                    alt="enveloppe" /></a>
+            <a href=""><img
+                    class="icon"
+                    src="{{asset}}/images/Partageiconbp.png"
+                    alt="partager" /></a>
+            <a href=""><img
+                    class="icon"
+                    src="{{asset}}/images/star.png"
+                    alt="Favorites" /></a>
+        </div>
         </div>
 
         <div class="fiche-tabs">
@@ -249,20 +250,20 @@
                         <div class="flex-row lato-regular">
 
                             <h4 class="h4">Date de début:</h4>
-                            <p>{{timbre.enchere[0].startdateperiod}}</p>
+                            <p>{{timbre.startdateperiod}}</p>
 
                         </div>
 
                         <div class="flex-row lato-regular">
 
                             <h4 class="h4">Date de fin:</h4>
-                            <p>{{timbre.enchere[0].enddateperiod}}</p>
+                            <p>{{timbre.enddateperiod}}</p>
 
                         </div>
 
                         <div class="flex-row lato-regular">
-                            <h4 class="h4">Dernière offre:</h4>
-                            <p>$ {{timbre.enchere[0].valeurdemise}} CAD</p>
+                            <h4 class="h4">Prix de base:</h4>
+                            <p>$ {{timbre.priceenchere}} CAD</p>
                         </div>
                     </div>
 
@@ -331,7 +332,7 @@
             <div class="flex-row lato-regular">
 
                 <h4 class="h4">Prix de base:</h4>
-                <p>$ {{timbre.enchere[0].priceenchere}} CAD</p>
+                <p>$ {{timbre.priceenchere}} CAD</p>
 
 
             </div>
@@ -347,13 +348,13 @@
             <div class="flex-row">
 
                 <h4 class="h4">Date de début:</h4>
-                <p>{{timbre.enchere[0].startdateperiod}}</p>
+                <p>{{timbre.startdateperiod}}</p>
 
             </div>
             <div class="flex-row">
 
                 <h4 class="h4">Date de fin:</h4>
-                <p>{{timbre.enchere[0].enddateperiod}}</p>
+                <p>{{timbre.enddateperiod}}</p>
 
             </div>
         </div>
@@ -366,7 +367,8 @@
             <div class="flex-row">
 
                 <form action="{{base}}/user/catalogue/show" method="post">
-                    <input name="enchereidenchere" value="{{timbre.enchere[0].idenchere}}">
+                    <input hidden name="enchereidenchere" value="{{timbre.idenchere}}">
+                    <input hidden name="idtimbre" value="{{ timbre.idtimbre }}">
                     <div class="navigation-input-flex">
                         <label hidden for="Encherir" id="Encherir-label">Encherir</label>
                         <!-- <input type="hidden" name="enchereidenchere" value="{{ timbre.enchere.idenchere }}">

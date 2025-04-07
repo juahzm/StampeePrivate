@@ -26,16 +26,16 @@ class ProfilController
     {
 
         $data['useriduserenchere'] = $_SESSION['id_user'];
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
+        $idtimbre = $data['idtimbre'];
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
 
 
         $mise = new Mise;
         $miseinsert = $mise->insert($data);
 
 
-
-        return View::redirect('/user/catalogue/show');
+        return View::redirect('user/catalogue/show?idtimbre=' . $idtimbre);
     }
 }
