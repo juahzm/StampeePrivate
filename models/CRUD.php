@@ -98,27 +98,97 @@ abstract class CRUD extends \PDO {
         return $stmt->fetchAll();
     }
 
+    // public function selectAll($value) {
+    //     $sql = "SELECT * FROM $this->table WHERE $this->externalKey = :$this->externalKey";
+    //     $stmt = $this->prepare($sql);
+    //     $stmt->bindValue(":$this->externalKey", $value);
+    //     $stmt->execute();
+       
+    //         return $stmt->fetchAll();
+    //     }
+
    
 
-    final public function selectWithJoin($joinTable, $selectField, $externalKey){
+    // final public function selectWithJoin($joinTable, $selectField, $externalKey){
         
-        $sql = "SELECT $selectField FROM $this->table 
-                INNER JOIN $joinTable ON $this->table.$this->primaryKey = $joinTable.$externalKey
-                WHERE $joinTable.$externalKey = $this->table.$this->primaryKey";
+    //     $sql = "SELECT $selectField FROM $this->table 
+    //             INNER JOIN $joinTable ON $this->table.$this->primaryKey = $joinTable.$externalKey
+    //             WHERE $joinTable.$externalKey = $this->table.$this->primaryKey";
     
        
-        $stmt = $this->prepare($sql);
+    //     $stmt = $this->prepare($sql);
     
+    //     $stmt->execute();
+    
+    //     $count = $stmt->rowCount();
+    
+    //     if ($count >= 1) {
+    //         return $stmt->fetch();
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+   
+    // final public function selectWithJoin($value, $joinTable){
+        
+    //     $sql = "SELECT FROM $this->table 
+    //             INNER JOIN $joinTable ON $this->externalKey = = :$this->externalKey";
+    
+    //         $stmt = $this->prepare($sql);
+    //         $stmt->bindValue(":$this->externalKey", $value);
+    //         $stmt->execute();
+   
+    //     return $stmt->fetchAll();
+    // }
+
+    //deux tables
+    // final public function selectWithJoinAll($joinTable, $externalKey, $primaryKey) {
+    //     $sql = "SELECT * FROM $this->table 
+    //             INNER JOIN $joinTable ON $this->table.$externalKey = $joinTable.$primaryKey";
+    
+    //     $stmt = $this->prepare($sql);
+    //     $stmt->execute();
+    
+    //     return $stmt->fetchAll();
+    // }
+
+//trois tables
+    final public function selectWithJoinAll2($joinTable, $joinTable2,  $externalKey, $primaryKey, $externalKey2) {
+        $sql = "SELECT * FROM $this->table 
+                INNER JOIN $joinTable ON $this->table.$externalKey = $joinTable.$primaryKey
+                INNER JOIN $joinTable2 ON $joinTable2.$externalKey2 = $joinTable.$primaryKey
+                WHERE $joinTable2.imageprimary = 1";
+    
+        $stmt = $this->prepare($sql);
         $stmt->execute();
     
-        $count = $stmt->rowCount();
-    
-        if ($count >= 1) {
-            return $stmt->fetch();
-        } else {
-            return false;
-        }
+        return $stmt->fetchAll();
     }
+
+    //4tables
+
+    final public function selectWithJoinAll3($jointable, $externalKey, $primaryKey1,  $jointable2, $externalKey2,  $primaryKey2,  $jointable3, $externalKey3) {
+        $sql = "SELECT * FROM $this->table 
+                INNER JOIN $jointable ON $this->table.$externalKey = $jointable.$primaryKey1
+                INNER JOIN $jointable2 ON $jointable.$externalKey2 = $jointable2.$primaryKey2
+                INNER JOIN $jointable3 ON $jointable3.$externalKey3 = $jointable2.$primaryKey2";
+
+            $stmt = $this->prepare($sql);
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+
+// final public function selectWithJoinAll3('enchere', 'enchereidenchere', idenchere,  'timbre', 'timbreditimbreenchere',  'idtimbre',  'image', 'timbreidtimbre') {
+//     $sql = "SELECT * FROM $this->table 
+//             INNER JOIN 'enchere' ON $this->table.'enchereidenchere' = $enchere.'idenchere'
+//             INNER JOIN ''timbre'' ON $'enchere.'timbreditimbreenchere' = 'timbre'.'idtimbre'
+//             INNER JOIN 'image' ON ''image.'timbreidtimbre' = $timbre.$primaryKey";
+    
+
+    }
+
+
 
     
 

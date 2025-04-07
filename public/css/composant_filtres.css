@@ -1,0 +1,109 @@
+.filtre-flex-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background-color: var(--couleurBleuPrussian);
+    color: var(--couleurBlancSnow);
+    padding: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    gap: 10px;
+    justify-content: space-between;
+
+    &:last-child {
+        padding-bottom: 30px;
+    }
+}
+
+.filtres-details-nested {
+    background-color: var(--couleurGrisTimberwolf);
+    border-radius: 0;
+    color: var(--couleurBleuPrussian);
+
+    .filtres-summary-nested {
+        text-align: center;
+        position: relative;
+        list-style: none;
+    }
+
+    & .filtres-summary-nested::before {
+        content: "▶";
+        position: absolute;
+        left: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    &[open] .filtres-summary-nested::before {
+        transform: rotate(90deg);
+    }
+}
+
+details {
+    background-color: var(--couleurBleuPrussian);
+    color: var(--couleurBlancSnow);
+    border-radius: 10px;
+
+    &>div:first-of-type {
+        padding-top: 30px;
+    }
+
+    &>* {
+        padding: 7px;
+    }
+
+    &[open] div {
+        background-color: var(--couleurGrisTimberwolf);
+        color: var(--couleurBleuPrussian);
+    }
+
+    & summary {
+        text-align: center;
+        position: relative;
+        list-style: none;
+        width: 150px;
+    }
+
+    & summary::before {
+        content: "▶";
+        position: absolute;
+        left: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    &[open] summary::before {
+        transform: rotate(90deg);
+    }
+}
+
+.filtres-bouton {
+    padding: 5px;
+    display: inline-block;
+    border-radius: 5px;
+    background-color: var(--couleurBleuDogger);
+    color: var(--couleurBlanc);
+    text-align: center;
+    border: 0;
+    font-family: "Lato", serif;
+    width: fit-content;
+    height: fit-content;
+    text-decoration: none;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.filtres-bouton:hover {
+    background-color: var(--couleurBlancSnow);
+    color: var(--couleurBleuPrussian);
+}
+
+.filtres-conteneur-archive {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.filtres-conteneur {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

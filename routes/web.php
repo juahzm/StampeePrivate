@@ -1,4 +1,5 @@
 <?php
+
 use App\Controllers\UserController;
 use App\Routes\Route;
 
@@ -11,7 +12,7 @@ Route::post('/user/accueil/create', 'UserController@store');
 
 Route::get('/user/accueil/login', 'AuthController@index'); //index c'est la page login
 Route::post('/user/accueil/login', 'AuthController@store');
-Route::get('/user/accueil/logout', 'AuthController@delete'); 
+Route::get('/user/accueil/logout', 'AuthController@delete');
 
 Route::get('/user/profil', 'ProfilController@index');
 
@@ -32,5 +33,3 @@ Route::post('/timbre/edit', 'TimbreController@update');
 
 
 Route::dispatch();
-
-

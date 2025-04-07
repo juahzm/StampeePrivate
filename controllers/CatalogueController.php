@@ -17,53 +17,87 @@ ini_set('display_errors', 1);
 
 
 class CatalogueController{
-    
-    
-    public function index() {
-        
-        $timbre = new Timbre;
-        $select = $timbre->select();
-        $image = new Image;
-        $selectimg = $image->select();
-        
-        $enchere = new Enchere;
-        $selectEnchere = $enchere->select();
+
+
+  public function index() {
+
+      
+        //   $timbre = new Timbre();
+        //   $enchere = new Enchere();
+        // $selectEnchereEtTimbre = $enchere->selectWithJoinAll('timbre', 'timbreidtimbreenchere', 'idtimbre');
         // echo "<pre>";
-        // print_r($selectEnchere); 
+        // print_r($selectEnchereEtTimbre);
         // echo "</pre>";
+        // die();
+
+          $timbre = new Timbre;
+          $image = new Image;
+          $enchere = new Enchere;
+          
+        $selectEnchereEtTimbre = $enchere->selectWithJoinAll2('timbre', 'image', 'timbreidtimbreenchere', 'idtimbre', 'timbreidtimbre');
+        // echo "<pre>";
+        // print_r($selectEnchereEtTimbre);
+        // echo "</pre>";
+
+           
+    foreach ($selectEnchereEtTimbre as &$timbreRecord) {
+      $timbreRecord['encheres'] = [];
+
+      foreach ($selectEnchereEtTimbre as $enchereRecord) {
+      if ($enchereRecord['timbreidtimbreenchere'] == $timbreRecord['idtimbre']) {
+          $timbreRecord['encheres'][] = $enchereRecord; 
+      }
+  }
+}
+
+       
+       
+
+        
+                
+        // $timbre = new Timbre;
+        // $select = $timbre->select();
+        // $image = new Image;
+        // $selectimg = $image->select();
+        
+        // $enchere = new Enchere;
+        // $selectEnchere = $enchere->select();
+        // // echo "<pre>";
+        // // print_r($selectEnchere); 
+        // // echo "</pre>";
         
         
-        foreach ($select as &$timbreRecord) {
+        // foreach ($select as &$timbreRecord) {
             
-            $timbreRecord['encheres'] = [];
+        //     $timbreRecord['encheres'] = [];
             
-            foreach ($selectEnchere as $enchereRecord) {
-                if ($enchereRecord['timbreidtimbreenchere'] == $timbreRecord['idtimbre']) {
-                    $timbreRecord['encheres'][] = $enchereRecord; // Attach the entire enchere record to the timbre
+        //     foreach ($selectEnchere as $enchereRecord) {
+        //         if ($enchereRecord['timbreidtimbreenchere'] == $timbreRecord['idtimbre']) {
+        //             $timbreRecord['encheres'][] = $enchereRecord; // Attach the entire enchere record to the timbre
                     
-                }
-            }
-            // echo "<pre>";
-            // print_r($timbreRecord['encheres']); 
-            // echo "</pre>";
+        //         }
+        //     }
+        //     // echo "<pre>";
+        //     // print_r($timbreRecord['encheres']); 
+        //     // echo "</pre>";
             
             
-            foreach ($selectimg as $img) {
+        //     foreach ($selectimg as $img) {
                 
-                //     echo "<pre>";
-                //     print_r($selectimg); 
-                // echo "</pre>";
+        //         //     echo "<pre>";
+        //         //     print_r($selectimg); 
+        //         // echo "</pre>";
                 
                 
-                if ($img['timbreidtimbre'] == $timbreRecord['idtimbre'] && $img['imageprimary'] == 1) {
-                    $timbreRecord['Imageurl'] = $img['Imageurl'];
+        //         if ($img['timbreidtimbre'] == $timbreRecord['idtimbre'] && $img['imageprimary'] == 1) {
+        //             $timbreRecord['Imageurl'] = $img['Imageurl'];
                     
                     
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
         
-        return  View::render('catalogue/index', ['timbres' => $select]);
+        return  View::render('catalogue/index', ['timbres' => $selectEnchereEtTimbre]);
         
     }
     
