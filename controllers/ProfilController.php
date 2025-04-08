@@ -33,9 +33,10 @@ class ProfilController
 
 
         $mise = new Mise;
+        $miseSelect = $mise->select();
         $miseinsert = $mise->insert($data);
 
 
-        return View::redirect('user/catalogue/show?idtimbre=' . $idtimbre);
+        return View::redirect('user/catalogue/show?idtimbre=' . $idtimbre, ['miseSelect' => $miseSelect]);
     }
 }

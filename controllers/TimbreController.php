@@ -119,6 +119,11 @@ class TimbreController
     public function show($data = [])
     {
 
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+
+
         $timbre = new Timbre;
         $image = new Image;
         $enchere = new Enchere;
@@ -131,16 +136,16 @@ class TimbreController
 
 
         $timbreData = $dataAll[0];
-        echo "<pre>";
-        print_r($timbreData);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($timbreData);
+        // echo "</pre>";
 
         $color = new Color;
         $select2 = $color->selectId($timbreData['coloridcolor']);
         $timbreData['coloridcolor'] = $select2[0]['namecolor'];
-        echo "<pre>";
-        print_r($select2);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($select2);
+        // echo "</pre>";
 
         $country = new Country;
         $select3 = $country->selectId($timbreData['countryidcountry']);
@@ -164,12 +169,18 @@ class TimbreController
             }
         }
         $otherImages = array_merge($otherImages);
-        echo "<pre>";
-        print_r($otherImages);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($dataAll);
+        // echo "</pre>";
+        // die();
 
-        return View::render('catalogue/show', ['timbre' => $timbreData, 'images' => $dataAll, 'primaryImage' => $primaryImage, 'otherImages' => $otherImages]);
+        $mise = new Mise;
+        $selectmise = $mise->selectIdorder($timbreData['idenchere'], 'valeurdemise', 'DESC');
+
+        return View::render('catalogue/show', ['timbre' => $timbreData, 'images' => $dataAll, 'primaryImage' => $primaryImage, 'otherImages' => $otherImages, 'selectmise' => $selectmise]);
     }
+
+
 
 
 

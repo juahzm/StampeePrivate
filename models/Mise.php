@@ -14,6 +14,6 @@ class Mise extends CRUD
     protected $table = 'mise';
     protected $primaryKey = 'idmise';
     protected $fillable = ['datedemise', 'valeurdemise', 'enchereidenchere', 'useriduserenchere'];
-    protected $externalKey1 = ['enchereidenchere'];
-    protected $externalKey2 = ['useriduserenchere'];
+    protected $externalKey1 = 'enchereidenchere';
+    protected $externalKey2 = 'useriduserenchere';
 }

@@ -427,10 +427,29 @@
         </div>
 
         <div class="flex-row">
-            <h3 class="h4">
-                Voici la dernire mise:
-            </h3>
-            <p>$ {{timbre.enchere[0].valeurdemise}} CAD</p>
+            <div class="flex-row">
+                <h4 class="h4">Voici les mises à jour en ordre descendant:</h4>
+
+                <div class="conteneur_externe_mise">
+
+
+                    {% if selectmise is not empty %}
+                    {% for mise in selectmise %}
+                    <div class="conteneur_mise">
+                        <p>Valeur de mise: {{ mise.valeurdemise }}</p>
+                        <p>Date de mise: {{ mise.datedemise }}</p>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <p>No mises found.</p>
+                    {% endif %}
+
+                </div>
+
+
+
+
+            </div>
 
         </div>
     </div>
