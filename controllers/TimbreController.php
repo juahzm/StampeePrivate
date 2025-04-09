@@ -41,9 +41,8 @@ class TimbreController
     public function store($data = [])
     {
 
-        // $data['useriduser'] = $_SESSION['id_user'];
-        // print_r($data['useriduser']);
-        // die();
+        $data['useriduser'] = $_SESSION['id_user'];
+
 
         $validator = new Validator;
         $validator->field('nametimbre', $data['nametimbre'], 'le nom du timbre')->required()->max(25);
@@ -119,9 +118,9 @@ class TimbreController
     public function show($data = [])
     {
 
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
 
 
         $timbre = new Timbre;

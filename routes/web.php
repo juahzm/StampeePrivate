@@ -16,6 +16,7 @@ Route::get('/user/accueil/logout', 'AuthController@delete');
 
 Route::get('/user/profil', 'ProfilController@index');
 
+
 Route::get('/user/timbre/create', 'TimbreController@create');
 Route::post('/user/timbre/create', 'TimbreController@store');
 
@@ -29,6 +30,7 @@ Route::get('/timbre/edit', 'TimbreController@edit');
 Route::post('/timbre/edit', 'TimbreController@update');
 
 Route::get('/api/enchere', 'CatalogueController@api');
+
 
 
 

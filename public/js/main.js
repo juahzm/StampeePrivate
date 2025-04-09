@@ -161,11 +161,84 @@ document.getElementById("applyColorBtn").addEventListener("click", (event) => {
   createMain(filteredTimbres);
 });
 
+const conditionMap = {
+  Parfaite: 1,
+  Excellente: 2,
+  Bonne: 3,
+  Moyenne: 4,
+  Endommage: 5,
+};
+
+document.getElementById("applyConditionBtn").addEventListener(
+  "click",
+  (event) => {
+    event.preventDefault();
+
+    const checkedBoxes = Array.from(
+      document.querySelectorAll("input[type=checkbox]:checked"),
+    );
+
+    const selectedConditions = [];
+
+    checkedBoxes.forEach((box) => {
+      const label = box.getAttribute("aria-labelledby");
+      const conditionId = conditionMap[label];
+
+      if (conditionId !== undefined) {
+        selectedConditions.push(conditionId);
+      }
+    });
+
+    const filteredTimbres2 = timbres.filter((t) =>
+      selectedConditions.includes(t.conditionsidconditions)
+    );
+
+    createMain(filteredTimbres2);
+  },
+);
+
+const cityMap = {
+  Angleterre: 1,
+  France: 2,
+  Etatsunis: 3,
+  Canada: 4,
+  Allemagne: 5,
+  Pologne: 6,
+};
+
+document.getElementById("applyCityBtn").addEventListener(
+  "click",
+  (event) => {
+    event.preventDefault();
+
+    const checkedBoxes = Array.from(
+      document.querySelectorAll("input[type=checkbox]:checked"),
+    );
+
+    const selectedCities = [];
+
+    checkedBoxes.forEach((box) => {
+      const label = box.getAttribute("aria-labelledby");
+      const cityId = cityMap[label];
+
+      if (cityId !== undefined) {
+        selectedCities.push(cityId);
+      }
+    });
+
+    const filteredTimbres3 = timbres.filter((t) =>
+      selectedCities.includes(t.countryidcountry)
+    );
+
+    createMain(filteredTimbres3);
+  },
+);
+
 function createMain(timbres) {
   const main = document.querySelector("#main");
   main.innerHTML = "";
   const div = document.createElement("div");
-  div.classList.add("main-Grille");
+  div.classList.add("main-Grille", "main-omg");
 
   timbres.forEach((timbre) => {
     div.append(timbre.representationHTML());

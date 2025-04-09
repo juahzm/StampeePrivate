@@ -181,8 +181,9 @@ abstract class CRUD extends \PDO
         $sql = "SELECT * FROM $this->table 
                 INNER JOIN $joinTable ON $this->table.$externalKey = $joinTable.$primaryKey
                 INNER JOIN $joinTable2 ON $joinTable2.$externalKey2 = $joinTable.$primaryKey
-                WHERE $joinTable2.imageprimary = 1";
-        // AnD currentdate>datedufin;
+                WHERE $joinTable2.imageprimary = 1
+                AND $this->table.enddateperiod > CURRENT_DATE";
+
 
         $stmt = $this->prepare($sql);
         $stmt->execute();
@@ -192,12 +193,16 @@ abstract class CRUD extends \PDO
 
     //4tables
 
-    final public function selectWithJoinAll3($jointable, $externalKey, $primaryKey1,  $jointable2, $externalKey2,  $primaryKey2,  $jointable3, $externalKey3)
+
+
+    final public function selectWithJoinAll3($sessionid, $jointable, $externalKey, $primaryKey1, $jointable2,  $externalKey2,  $primaryKey2,  $jointable3, $externalKey3)
     {
         $sql = "SELECT * FROM $this->table 
                 INNER JOIN $jointable ON $this->table.$externalKey = $jointable.$primaryKey1
                 INNER JOIN $jointable2 ON $jointable.$externalKey2 = $jointable2.$primaryKey2
-                INNER JOIN $jointable3 ON $jointable3.$externalKey3 = $jointable2.$primaryKey2";
+                INNER JOIN $jointable3 ON $jointable3.$externalKey3 = $jointable2.$primaryKey2
+                WHERE $this->table.useriduserenchere = $sessionid
+                AND $jointable3.imageprimary =1";
 
         $stmt = $this->prepare($sql);
         $stmt->execute();

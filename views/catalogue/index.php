@@ -172,6 +172,11 @@
 
                 </header>
 
+
+
+
+
+
                 <aside>
 
                     <form action="" method="POST">
@@ -275,8 +280,8 @@
                                         <div class="flex-row">
                                             <input
                                                 type="checkbox"
-                                                aria-labelledby="parfaite" />
-                                            <label id="parfaite">Parfaite</label>
+                                                aria-labelledby="Parfaite" />
+                                            <label id="Parfaite">Parfaite</label>
                                         </div>
                                         <div></div>
                                     </div>
@@ -285,8 +290,8 @@
                                         <div class="flex-row">
                                             <input
                                                 type="checkbox"
-                                                aria-labelledby="excellente" />
-                                            <label id="excellente">Excellente</label>
+                                                aria-labelledby="Excellente" />
+                                            <label id="Excellente">Excellente</label>
                                         </div>
                                         <div></div>
                                     </div>
@@ -295,8 +300,8 @@
                                         <div class="flex-row">
                                             <input
                                                 type="checkbox"
-                                                aria-labelledby="bonne" />
-                                            <label id="bonne">Bonne</label>
+                                                aria-labelledby="Bonne" />
+                                            <label id="Bonne">Bonne</label>
                                         </div>
                                         <div></div>
                                     </div>
@@ -305,8 +310,8 @@
                                         <div class="flex-row">
                                             <input
                                                 type="checkbox"
-                                                aria-labelledby="moyenne" />
-                                            <label id="moyenne">Moyenne</label>
+                                                aria-labelledby="Moyenne" />
+                                            <label id="Moyenne">Moyenne</label>
                                         </div>
                                         <div></div>
                                     </div>
@@ -315,15 +320,15 @@
                                         <div class="flex-row">
                                             <input
                                                 type="checkbox"
-                                                aria-labelledby="endommage" />
-                                            <label id="endommage">endommage</label>
+                                                aria-labelledby="Endommage" />
+                                            <label id="Endommage">endommage</label>
                                         </div>
                                         <div></div>
                                     </div>
 
 
                                     <div class="titres">
-                                        <button type="submit" class="filtres-bouton">Appliquer</button>
+                                        <button type="button" id="applyConditionBtn" class="filtres-bouton">Appliquer</button>
                                     </div>
                                 </details>
 
@@ -350,8 +355,8 @@
                                         <div class="flex-row">
                                             <input
                                                 type="checkbox"
-                                                aria-labelledby="angleterre" />
-                                            <label id="angleterre">Angleterre</label>
+                                                aria-labelledby="Angleterre" />
+                                            <label id="Angleterre">Angleterre</label>
                                         </div>
                                         <div></div>
                                     </div>
@@ -360,8 +365,8 @@
                                         <div class="flex-row">
                                             <input
                                                 type="checkbox"
-                                                aria-labelledby="france" />
-                                            <label id="france">France</label>
+                                                aria-labelledby="France" />
+                                            <label id="France">France</label>
                                         </div>
                                         <div></div>
                                     </div>
@@ -370,8 +375,8 @@
                                         <div class="flex-row">
                                             <input
                                                 type="checkbox"
-                                                aria-labelledby="etatsunis" />
-                                            <label id="etatsunis">Etats Unis</label>
+                                                aria-labelledby="Etatsunis" />
+                                            <label id="Etatsunis">Etats Unis</label>
                                         </div>
                                         <div></div>
                                     </div>
@@ -380,8 +385,8 @@
                                         <div class="flex-row">
                                             <input
                                                 type="checkbox"
-                                                aria-labelledby="canada" />
-                                            <label id="canada">Canada</label>
+                                                aria-labelledby="Canada" />
+                                            <label id="Canada">Canada</label>
                                         </div>
                                         <div></div>
                                     </div>
@@ -390,8 +395,8 @@
                                         <div class="flex-row">
                                             <input
                                                 type="checkbox"
-                                                aria-labelledby="allemagne" />
-                                            <label id="allemagne">Allemagne</label>
+                                                aria-labelledby="Allemagne" />
+                                            <label id="Allemagne">Allemagne</label>
                                         </div>
                                         <div></div>
                                     </div>
@@ -400,14 +405,14 @@
                                         <div class="flex-row">
                                             <input
                                                 type="checkbox"
-                                                aria-labelledby="pologne" />
-                                            <label id="pologne">Pologne</label>
+                                                aria-labelledby="Pologne" />
+                                            <label id="Pologne">Pologne</label>
                                         </div>
                                         <div></div>
                                     </div>
 
                                     <div class="titres">
-                                        <button type="submit" class="filtres-bouton">Appliquer</button>
+                                        <button type="button" id="applyCityBtn" class="filtres-bouton">Appliquer</button>
                                     </div>
                                 </details>
 
@@ -417,24 +422,10 @@
                         </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                     </form>
 
 
                 </aside>
-
-
 
 
                 <main id="main" class="main-conteneur-principal">

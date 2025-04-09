@@ -7,7 +7,7 @@
     <title>Fiche d’enchère</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <script src="/projetwebcopy/public/js/zoom.js" type="module"></script>:while
+    <script src="/projetwebcopy/public/js/zoom.js" type="module"></script>
     <script src="/projetwebcopy/public/js/transition.js" type="module"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
@@ -255,17 +255,7 @@
                         </div>
                     </div>
 
-                    <div>
-                        <div class="flex-row lato-regular">
-                            <h4 class="h4">Quantité de mises:</h4>
-                            <p></p>
-                        </div>
 
-                        <div class="flex-row lato-regular">
-                            <h4 class="h4">Coups de cœur du Lord:</h4>
-
-                        </div>
-                    </div>
                 </article>
             </div>
 
@@ -324,14 +314,7 @@
 
 
             </div>
-            <!-- <h4 class="h4">Offre actuelle:</h4>
-                    <p>$60 CAD</p> -->
 
-            <div>
-                <h4 class="h4">Favoris de Stampee: </h4>
-                <p></p>
-
-            </div>
 
             <div class="flex-row">
 
@@ -361,12 +344,13 @@
                         <label hidden for="Encherir" id="Encherir-label">Encherir</label>
                         <!-- <input type="hidden" name="enchereidenchere" value="{{ timbre.enchere.idenchere }}">
                         <input type="hidden" name="useriduserenchere" value=" {{timbre.useriduser}}"> -->
+                        <span class="errors"> {{errors.valeurdemise}}</span>
                         <input
                             type="text"
                             name="valeurdemise"
                             id="Encherir"
                             placeholder="$ Placer la mise"
-                            class="navigation-recherche"
+                            class=""
                             required
                             aria-labelledby="Encherir-label" />
                         <button>
@@ -376,7 +360,7 @@
             </div>
             </form>
 
-
+            <!-- <button type="button" class="fiche-bouton-edit"> -->
 
             <div class="flex-row">
                 <h3 class="h3">Options de payment:</h3>
@@ -448,7 +432,7 @@
     <div class="carte_info"></div>
 
     <article class="rosarivo-regular-grand flex-column"></article>
-
+    <!-- 
     <div class="cartes-defilement">
         <div class="titres rosarivo-regular-italic">
             <h2>Ce qui pourrait vous intéresser</h2>
@@ -591,7 +575,7 @@
                 </div>
             </article>
         </div>
-    </div>
+    </div> -->
 
     </div>
 
