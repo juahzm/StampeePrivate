@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+    padding: 15px;
 
 
 }
@@ -103,4 +104,14 @@
 
 .fiche-tabs_radio:checked+.fiche-tabs_label+.fiche-tabs_contenu {
     display: initial;
+}
+
+.zoom-in {
+    transform: scale(2.2);
+
+}
+
+#mainimagezoom {
+    transition: transform 2s ease-in-out;
+
 }

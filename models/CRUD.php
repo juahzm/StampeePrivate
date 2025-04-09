@@ -182,6 +182,7 @@ abstract class CRUD extends \PDO
                 INNER JOIN $joinTable ON $this->table.$externalKey = $joinTable.$primaryKey
                 INNER JOIN $joinTable2 ON $joinTable2.$externalKey2 = $joinTable.$primaryKey
                 WHERE $joinTable2.imageprimary = 1";
+        // AnD currentdate>datedufin;
 
         $stmt = $this->prepare($sql);
         $stmt->execute();

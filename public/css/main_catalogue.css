@@ -239,7 +239,7 @@ input {
     display: flex;
     flex-direction: row;
     gap: 30px;
-    flex-basis: 300px;
+    flex-basis: 400px;
 }
 
 .fiche-icon {

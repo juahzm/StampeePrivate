@@ -7,6 +7,9 @@
                 <title>Catalogue</title>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                <script src="/projetwebcopy/public/js/main.js" type="module"></script>
+
+
                 <link
                     href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
                     rel="stylesheet" />
@@ -171,87 +174,262 @@
 
                 <aside>
 
-                    <div class="filtres-conteneur-archive">
-                        <div class="titres rosarivo-regular">
-                            <h3>filtres</h3>
+                    <form action="" method="POST">
+
+                        <div class="filtres-conteneur-archive">
+                            <div class="titres rosarivo-regular">
+                                <h3>filtres</h3>
+                            </div>
+
+                            <div class="filtres-conteneur">
+
+                                <details open>
+                                    <summary>
+                                        <span>Couleur</span>
+                                    </summary>
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="rouge" />
+                                            <label id="rouge">Rouge</label>
+                                        </div>
+                                        <div></div>
+                                    </div>
+
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="bleu" />
+                                            <label id="bleu">Bleu</label>
+                                        </div>
+                                        <div></div>
+                                    </div>
+
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="jaune" />
+                                            <label id="jaune">Jaune</label>
+                                        </div>
+                                        <div></div>
+                                    </div>
+
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="orange" />
+                                            <label id="orange">Orange</label>
+                                        </div>
+                                        <div></div>
+                                    </div>
+
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="gris" />
+                                            <label id="gris">Gris</label>
+                                        </div>
+                                        <div></div>
+                                    </div>
+
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="vert" />
+                                            <label id="vert">Vert</label>
+                                        </div>
+                                        <div></div>
+                                    </div>
+
+                                    <div class="titres">
+                                        <button type="button" id="applyColorBtn" class="filtres-bouton">Appliquer</button>
+                                    </div>
+                                </details>
+
+                            </div>
+
+
                         </div>
 
-                        <div class="filtres-conteneur">
 
-                            <details open>
-                                <summary>
-                                    <span>Couleur</span>
-                                </summary>
-                                <div class="filtre-flex-row">
-                                    <div class="flex-row">
-                                        <input
-                                            type="checkbox"
-                                            aria-labelledby="rouge" />
-                                        <label id="rouge">Rouge</label>
+
+
+                        <div class="filtres-conteneur-archive">
+                            <div class="titres rosarivo-regular">
+                                <h3></h3>
+                            </div>
+
+                            <div class="filtres-conteneur">
+
+                                <details open>
+                                    <summary>
+                                        <span>Condition</span>
+                                    </summary>
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="parfaite" />
+                                            <label id="parfaite">Parfaite</label>
+                                        </div>
+                                        <div></div>
                                     </div>
-                                    <div></div>
-                                </div>
 
-                                <div class="filtre-flex-row">
-                                    <div class="flex-row">
-                                        <input
-                                            type="checkbox"
-                                            aria-labelledby="bleu" />
-                                        <label id="bleu">Bleu</label>
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="excellente" />
+                                            <label id="excellente">Excellente</label>
+                                        </div>
+                                        <div></div>
                                     </div>
-                                    <div></div>
-                                </div>
 
-                                <div class="filtre-flex-row">
-                                    <div class="flex-row">
-                                        <input
-                                            type="checkbox"
-                                            aria-labelledby="yell" />
-                                        <label id="yell">Jaune</label>
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="bonne" />
+                                            <label id="bonne">Bonne</label>
+                                        </div>
+                                        <div></div>
                                     </div>
-                                    <div></div>
-                                </div>
 
-                                <div class="filtre-flex-row">
-                                    <div class="flex-row">
-                                        <input
-                                            type="checkbox"
-                                            aria-labelledby="org" />
-                                        <label id="org">Orange</label>
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="moyenne" />
+                                            <label id="moyenne">Moyenne</label>
+                                        </div>
+                                        <div></div>
                                     </div>
-                                    <div></div>
-                                </div>
 
-                                <div class="filtre-flex-row">
-                                    <div class="flex-row">
-                                        <input
-                                            type="checkbox"
-                                            aria-labelledby="gris" />
-                                        <label id="gris">Gris</label>
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="endommage" />
+                                            <label id="endommage">endommage</label>
+                                        </div>
+                                        <div></div>
                                     </div>
-                                    <div></div>
-                                </div>
 
-                                <div class="filtre-flex-row">
-                                    <div class="flex-row">
-                                        <input
-                                            type="checkbox"
-                                            aria-labelledby="mar" />
-                                        <label id="mar">Vert</label>
+
+                                    <div class="titres">
+                                        <button type="submit" class="filtres-bouton">Appliquer</button>
                                     </div>
-                                    <div></div>
-                                </div>
+                                </details>
 
-                                <div class="titres">
-                                    <a class="filtres-bouton" href="">Appliquer</a>
-                                </div>
-                            </details>
+                            </div>
+
 
                         </div>
 
 
-                    </div>
 
+
+                        <div class="filtres-conteneur-archive">
+                            <div class="titres rosarivo-regular">
+                                <h3></h3>
+                            </div>
+
+                            <div class="filtres-conteneur">
+
+                                <details open>
+                                    <summary>
+                                        <span>Pays</span>
+                                    </summary>
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="angleterre" />
+                                            <label id="angleterre">Angleterre</label>
+                                        </div>
+                                        <div></div>
+                                    </div>
+
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="france" />
+                                            <label id="france">France</label>
+                                        </div>
+                                        <div></div>
+                                    </div>
+
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="etatsunis" />
+                                            <label id="etatsunis">Etats Unis</label>
+                                        </div>
+                                        <div></div>
+                                    </div>
+
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="canada" />
+                                            <label id="canada">Canada</label>
+                                        </div>
+                                        <div></div>
+                                    </div>
+
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="allemagne" />
+                                            <label id="allemagne">Allemagne</label>
+                                        </div>
+                                        <div></div>
+                                    </div>
+
+                                    <div class="filtre-flex-row">
+                                        <div class="flex-row">
+                                            <input
+                                                type="checkbox"
+                                                aria-labelledby="pologne" />
+                                            <label id="pologne">Pologne</label>
+                                        </div>
+                                        <div></div>
+                                    </div>
+
+                                    <div class="titres">
+                                        <button type="submit" class="filtres-bouton">Appliquer</button>
+                                    </div>
+                                </details>
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </form>
 
 
                 </aside>
@@ -259,10 +437,38 @@
 
 
 
-                <main class="main-conteneur-principal">
+                <main id="main" class="main-conteneur-principal">
+
+                    <!-- 
+                    <div>
+
+                        <article class="Carte">
+                            <div class="Carte-titre titres rosarivo-regular-italic">
+                                <h3></h3>
+                            </div>
+
+                            <img
+                                class="Carte-image"
+                                src=""
+                                alt="image" />
+
+                            <small></small>
+                            <small>Date de début: <strong></strong></small>
+                            <small>Date de fin: <strong></strong></small>
+                            <small>Prix de base: <strong></strong></small>
 
 
+                           
+                            <div class="flex-row">
+                                
+                                <a class="bouton" href="{{base}}/user/catalogue/show?idtimbre={{timbre.idtimbre}}">Voir</a>
+                            </div>
+                        </article>
 
+                    </div> -->
+
+
+                    <!-- 
                     {% for timbre in timbres %}
 
                     <div class="main-Grille">
@@ -328,7 +534,7 @@
 
 
 
-
+ -->
 
 
 

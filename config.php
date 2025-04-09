@@ -1,4 +1,4 @@
 <?php
-define('BASE', '/projetweb');
-define('ASSET', '/projetweb/public/');
-define('UPLOAD', '/projetweb/public/uploads/');
+define('BASE', '/projetwebcopy');
+define('ASSET', '/projetwebcopy/public/');
+define('UPLOAD', '/projetwebcopy/public/uploads/');

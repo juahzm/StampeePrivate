@@ -28,6 +28,8 @@ Route::post('/user/catalogue/show', 'ProfilController@store');
 Route::get('/timbre/edit', 'TimbreController@edit');
 Route::post('/timbre/edit', 'TimbreController@update');
 
+Route::get('/api/enchere', 'CatalogueController@api');
+
 
 
 

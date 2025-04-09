@@ -7,6 +7,8 @@
     <title>Fiche d’enchère</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script src="/projetwebcopy/public/js/zoom.js" type="module"></script>:while
+    <script src="/projetwebcopy/public/js/transition.js" type="module"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet" />
@@ -141,21 +143,7 @@
             <div class="titres rosarivo-regular-italic-grande">
                 <h3>{{ timbre.nametimbre }}</h3>
             </div>
-            <div class="fiche-conteneur">
-                <a href=""><img
-                        id="imagetimbrezoomin"
-                        class="icon"
-                        src="{{asset}}/images/zoomin.png"
-                        alt="zoomin" /></a>
-                <a href=""><img
-                        class="icon"
-                        src="{{asset}}/images/zoomout.png"
-                        alt="zoomout" /></a>
-                <a href=""><img
-                        class="icon"
-                        src="{{asset}}/images/maxpale.png"
-                        alt="max" /></a>
-            </div>
+
             <div class="flex-block">
                 {% if primaryImage %}
                 <img
@@ -171,7 +159,8 @@
                 {% if otherImages is not empty %}
                 {% for image in otherImages %}
                 <a href=""><img
-                        class="fiche-conteneur-image"
+
+                        class="fiche-conteneur-image secondary-image"
                         src="{{ upload }}{{ image }}"
                         alt="SecondaryImage{{ loop.index }}" /></a>
                 {% endfor %}
@@ -180,27 +169,26 @@
                 {% endif %}
             </div>
 
-
-
-
-
-
         </div>
 
         <div class="fiche-conteneur">
-            <a href=""><img
-                    class="icon"
-                    src="{{asset}}/images/enveloppe.png"
-                    alt="enveloppe" /></a>
-            <a href=""><img
-                    class="icon"
-                    src="{{asset}}/images/Partageiconbp.png"
-                    alt="partager" /></a>
-            <a href=""><img
-                    class="icon"
-                    src="{{asset}}/images/star.png"
-                    alt="Favorites" /></a>
-        </div>
+
+            <button id="imagetimbrezoomin" class="icon-button" aria-label="Zoom in">
+                <img
+                    src="{{asset}}/images/zoomin.png"
+                    alt="Zoom in icon"
+                    class="icon" />
+            </button>
+
+
+            <button id="imagetimbrezoomout" class="icon-button" aria-label="Zoom in">
+                <img
+                    src="{{asset}}/images/zoomout.png"
+                    alt="Zoom out icon"
+                    class="icon" />
+            </button>
+
+
         </div>
 
         <div class="fiche-tabs">
