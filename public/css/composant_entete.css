@@ -85,7 +85,7 @@ p {
 
 small {
     text-align: center;
-    margin-bottom: var(--espace-courant);
+    /* margin-bottom: var(--espace-courant); */
 }
 
 .lato-regular {
